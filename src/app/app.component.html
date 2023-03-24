@@ -1,1 +1,6 @@
-<h1 class="{{ [title, className] }}">{{ title | titlecase }}</h1>
+<div class="wrapper">
+     <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
+     <div class="product" *ngFor="let product of products">
+          <app-product [product]="product"></app-product>
+     </div>
+</div>

@@ -1,0 +1,6 @@
+<div [ngClass]="{ first: product.id === 1, product }">
+     <div>{{ product.title }}</div>
+     <div>Price: {{ product.price }}</div>
+     <div>Description: {{ product.description }}</div>
+     <img class="image" src="{{ product.image }}" alt="Image" />
+</div>
