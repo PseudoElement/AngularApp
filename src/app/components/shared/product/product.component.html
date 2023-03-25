@@ -1,6 +1,22 @@
-<div [ngClass]="{ first: product.id === 1, product }">
-     <div>{{ product.title }}</div>
-     <div>Price: {{ product.price }}</div>
-     <div>Description: {{ product.description }}</div>
-     <img class="image" src="{{ product.image }}" alt="Image" />
+<div [ngClass]="setClasses()">
+     <!--Можно просто [style]="{.........}" [class]="{......}"-->
+     <img class="image" [src]="product.image" [alt]="product.title" />
+     <div>{{ product.id }}. {{ product.title }}</div>
+     <div>Price: {{ product.price | currency : "EUR" }}</div>
+     <button
+          (click)="isShownMore = !isShownMore"
+          class="showMore"
+          [ngStyle]="{
+               color: 'white',
+               backgroundColor: isShownMore ? 'red' : 'purple',
+               fontSize: isShownMore ? '40px' : '20px'
+          }"
+     >
+          {{ isShownMore ? "HIDE" : "SHOW MORE" }}
+     </button>
+     <div *ngIf="isShownMore" [class]="{ content: 'content' }">
+          <div>Description: {{ product.description }}</div>
+          <h1>Rate: {{ product.rating.rate | number : "3.2-4" }}</h1>
+          <!--number pipe in off docs -->
+     </div>
 </div>

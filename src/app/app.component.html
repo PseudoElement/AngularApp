@@ -1,6 +1,10 @@
 <div class="wrapper">
      <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
-     <div class="product" *ngFor="let product of products">
-          <app-product [product]="product"></app-product>
+     <div class="product">
+          <app-product
+               *ngFor="let product of products; let i = index"
+               [i]="i"
+               [product]="product"
+          ></app-product>
      </div>
 </div>

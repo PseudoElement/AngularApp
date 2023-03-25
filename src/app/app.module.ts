@@ -1,3 +1,4 @@
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -7,7 +8,7 @@ import { ProductComponent } from "./components/shared/product/product.component"
 
 @NgModule({
      declarations: [AppComponent, ProductComponent],
-     imports: [BrowserModule, AppRoutingModule],
+     imports: [BrowserModule, AppRoutingModule, HttpClientModule],
      providers: [],
      bootstrap: [AppComponent],
 })
