@@ -1,8 +1,9 @@
 <div class="wrapper">
      <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
+     <p *ngIf="isLoading">Wait please...</p>
      <div class="product">
           <app-product
-               *ngFor="let product of products; let i = index"
+               *ngFor="let product of products$ | async; let i = index"
                [i]="i"
                [product]="product"
           ></app-product>
