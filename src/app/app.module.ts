@@ -6,15 +6,18 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProductComponent } from "./components/shared/product/product.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ErrorComponent } from './components/error/error.component';
+import { ErrorComponent } from "./components/error/error.component";
+import { FormsModule } from "@angular/forms";
+import { FilterProductsPipe } from './pipes/filter-products.pipe';
 
 @NgModule({
-     declarations: [AppComponent, ProductComponent, ErrorComponent],
+     declarations: [AppComponent, ProductComponent, ErrorComponent, FilterProductsPipe],
      imports: [
           BrowserModule,
           AppRoutingModule,
           HttpClientModule,
           BrowserAnimationsModule,
+          FormsModule,
      ],
      providers: [],
      bootstrap: [AppComponent],

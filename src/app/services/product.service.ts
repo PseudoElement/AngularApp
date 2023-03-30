@@ -29,7 +29,7 @@ export class ProductsService {
                     //         fromString: `limit=${limit}&sort=${sortType}`,       //////<------------------3th var
                     //    }),
                })
-               .pipe(delay(3000), catchError(this.handleError));
+               .pipe(delay(3000), catchError(this.handleError.bind(this)));
      }
 
      private handleError(e: HttpErrorResponse) {
