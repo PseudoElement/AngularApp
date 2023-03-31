@@ -10,12 +10,13 @@ form {
      justify-content: space-between;
      align-items: center;
      padding: 20px;
-     input {
-          font-size: 30px;
-          max-width: 100%;
-     }
+     // box-sizing: border-box;
+
      button {
           max-width: 150px;
           width: 100%;
+     }
+     input {
+          max-width: 100%;
      }
 }

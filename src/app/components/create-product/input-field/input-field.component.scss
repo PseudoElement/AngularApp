@@ -1,0 +1,15 @@
+input {
+     box-sizing: border-box;
+     font-size: 30px;
+     width: 100%;
+     label {
+          font-size: 15px;
+          font-weight: 900;
+          .title {
+               color: purple;
+          }
+          .error {
+               color: red;
+          }
+     }
+}

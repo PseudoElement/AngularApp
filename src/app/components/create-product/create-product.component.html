@@ -1,7 +1,23 @@
-<form action="" (click)="stopPropagation($event)">
+<form
+     [formGroup]="form"
+     (submit)="handleSubmit($event)"
+     (click)="stopPropagation($event)"
+>
      <h1>Form</h1>
-     <input type="text" />
-     <input type="text" />
+     <app-input-field
+          [data]="{
+               id: 'title',
+               titleText: 'Title',
+               errorText: title.errors
+          }"
+     ></app-input-field>
+     <app-input-field
+          [data]="{
+               id: 'author',
+               titleText: 'Author',
+               errorText: author.errors
+          }"
+     ></app-input-field>
      <button>Submit</button>
      <button type="button" (click)="closeModal()">Close modal</button>
 </form>

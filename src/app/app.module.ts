@@ -7,10 +7,11 @@ import { AppComponent } from "./app.component";
 import { ProductComponent } from "./components/product/product.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ErrorComponent } from "./components/error/error.component";
-import { FormsModule } from "@angular/forms"; // for [(ngModel)]
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"; // for [(ngModel)]
 import { FilterProductsPipe } from "./pipes/filter-products.pipe";
 import { ModalComponent } from "./components/modal/modal.component";
 import { CreateProductComponent } from "./components/create-product/create-product.component";
+import { InputFieldComponent } from './components/create-product/input-field/input-field.component';
 
 @NgModule({
      declarations: [
@@ -20,6 +21,7 @@ import { CreateProductComponent } from "./components/create-product/create-produ
           FilterProductsPipe,
           ModalComponent,
           CreateProductComponent,
+          InputFieldComponent,
      ],
      imports: [
           BrowserModule,
@@ -27,6 +29,7 @@ import { CreateProductComponent } from "./components/create-product/create-produ
           HttpClientModule,
           BrowserAnimationsModule,
           FormsModule,
+          ReactiveFormsModule,
      ],
      providers: [],
      bootstrap: [AppComponent],

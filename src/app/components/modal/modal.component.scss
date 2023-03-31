@@ -9,4 +9,10 @@
      align-items: center;
      justify-content: center;
      overflow-y: hidden;
+     h1 {
+          position: absolute;
+          top: 0;
+          text-align: center;
+          color: aqua;
+     }
 }
