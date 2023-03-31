@@ -3,6 +3,9 @@
      <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
      <input type="text" placeholder="Search products..." [(ngModel)]="name" />
      <button (click)="changeName()">Add 1 in input</button>
+     <button (click)="modalService.openModal()">
+          {{ modalService.isOpenModal ? "Hide" : "Show" }} form
+     </button>
      <p *ngIf="isLoading">Wait please...</p>
      <div *ngIf="products$ | async as products" class="product">
           <app-product
@@ -14,4 +17,7 @@
                [product]="product"
           ></app-product>
      </div>
+     <app-modal *ngIf="modalService.isOpenModal">
+          <app-create-product></app-create-product>
+     </app-modal>
 </div>

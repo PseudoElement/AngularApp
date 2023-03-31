@@ -1,3 +1,4 @@
+import { ModalService } from "./services/modal.service";
 import { Observable, tap } from "rxjs";
 import { ProductsService } from "./services/product.service";
 import { Product } from "./types/products";
@@ -16,15 +17,21 @@ import {
 })
 export class AppComponent implements OnInit, OnChanges {
      title = "AngularApp";
-     @Input() name: string = "Product";
+     @Input() name: string = "";
      products: Product[];
      isLoading = false;
      products$: Observable<Product[]>;
 
-     constructor(private productService: ProductsService) {}
+     constructor(
+          private productService: ProductsService,
+          public modalService: ModalService
+     ) {}
 
-     changeName() {
+     changeName(): void {
           this.name += "1";
+     }
+     openModal(): void {
+          this.modalService.openModal();
      }
 
      async ngOnInit(): Promise<any> {

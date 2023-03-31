@@ -1,4 +1,4 @@
-import { Product } from "./../../../types/products";
+import { Product } from "../../types/products";
 import { Component, Input } from "@angular/core";
 
 @Component({
