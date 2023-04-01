@@ -4,20 +4,8 @@
      (click)="stopPropagation($event)"
 >
      <h1>Form</h1>
-     <app-input-field
-          [data]="{
-               id: 'title',
-               titleText: 'Title',
-               errorText: title.errors
-          }"
-     ></app-input-field>
-     <app-input-field
-          [data]="{
-               id: 'author',
-               titleText: 'Author',
-               errorText: author.errors
-          }"
-     ></app-input-field>
+     <app-input-field [form]="form" [id]="'title'"></app-input-field>
+     <app-input-field [form]="form" [id]="'author'"></app-input-field>
      <button>Submit</button>
      <button type="button" (click)="closeModal()">Close modal</button>
 </form>

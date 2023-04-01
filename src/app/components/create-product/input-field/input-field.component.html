@@ -1,5 +1,15 @@
-<div class="inputField">
-     <label class="title" [for]="data.id">{{ data.titleText }}</label>
-     <input [id]="data.id" type="text" [formControlName]="data.id" />
-     <label class="error" [for]="data.id">{{ data.errorText }}</label>
+<div [formGroup]="form" class="inputField">
+     <label class="title" [for]="id">{{ id | titlecase }}</label>
+     <input
+          [appFocus]="id === 'title'"
+          [id]="id"
+          type="text"
+          [formControlName]="id"
+     />
+     <label
+          *ngIf="control.errors && control.touched"
+          class="error"
+          [for]="id"
+          >{{ Object.keys(control.errors).join(",") | titlecase }}</label
+     >
 </div>

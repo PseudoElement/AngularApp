@@ -1,4 +1,4 @@
-import { ModalService } from "./../../services/modal.service";
+import { ModalService } from "../../services/modal.service";
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
@@ -18,13 +18,6 @@ export class CreateProductComponent implements OnInit {
      });
      constructor(public modalService: ModalService) {}
      ngOnInit(): void {}
-
-     get title() {
-          return this.form.controls.title;
-     }
-     get author() {
-          return this.form.controls.author;
-     }
      closeModal() {
           this.modalService.closeModal();
      }
@@ -33,6 +26,8 @@ export class CreateProductComponent implements OnInit {
      }
      handleSubmit(e: Event): void {
           e.preventDefault();
-          console.log("FORM VALUE", this.form.value);
+          // console.log("TITLE", this.title);
+          console.log("FORM", this.form);
+          // console.log("FORM VALUE", this.form.value);
      }
 }

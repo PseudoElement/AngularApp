@@ -1,16 +1,36 @@
 import { Component, Input } from "@angular/core";
-import { ValidationErrors } from "@angular/forms";
+import {
+     ControlContainer,
+     FormControl,
+     FormGroup,
+     FormGroupDirective,
+     ValidationErrors,
+} from "@angular/forms";
 
-interface Data {
-     id: string;
-     titleText: string;
-     errorText: ValidationErrors | null;
-}
 @Component({
      selector: "app-input-field",
      templateUrl: "./input-field.component.html",
      styleUrls: ["./input-field.component.scss"],
+     // viewProviders: [
+     //      {
+     //           provide: ControlContainer, //<-------------------- это чтобы передавать formContactName в Input из другого компонента
+     //           useExisting: FormGroupDirective, //<--------------
+     //      },
+     // ],
 })
 export class InputFieldComponent {
-     @Input() data: Data;
+     @Input() id: string;
+     @Input() form: FormGroup;
+     JSON;
+     Object;
+     constructor() {
+          this.JSON = JSON;
+          this.Object = Object;
+     }
+     get control() {
+          return this.form.controls[this.id];
+     }
+     ngOnInit(): void {
+          console.log("FORM IN INPUT", this.form);
+     }
 }
