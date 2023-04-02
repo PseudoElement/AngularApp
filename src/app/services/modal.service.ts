@@ -1,15 +1,16 @@
 import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
      providedIn: "root",
 })
 export class ModalService {
-     isOpenModal = false;
+     isOpenModal$ = new BehaviorSubject<boolean>(false);
      constructor() {}
      openModal(): void {
-          this.isOpenModal = true;
+          this.isOpenModal$.next(true);
      }
      closeModal(): void {
-          this.isOpenModal = false;
+          this.isOpenModal$.next(false);
      }
 }

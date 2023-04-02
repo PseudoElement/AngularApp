@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms"; // for [(ngModel)]
 import { ComponentsModule } from "./components/components.module";
+import { PagesModule } from "./pages/pages.module";
 
 @NgModule({
      declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { ComponentsModule } from "./components/components.module";
           BrowserAnimationsModule,
           FormsModule,
           ComponentsModule,
+          PagesModule,
      ],
      providers: [],
      bootstrap: [AppComponent],

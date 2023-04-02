@@ -1,4 +1,4 @@
-import { Product } from "../types/products";
+import { Product } from "../shared/types/products";
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({

@@ -1,4 +1,4 @@
-import { Product } from "../../types/products";
+import { Product } from "../../shared/types/products";
 import { Component, Input } from "@angular/core";
 
 @Component({
@@ -10,6 +10,8 @@ export class ProductComponent {
      @Input() product: Product;
      @Input() i: number;
      isShownMore = false;
+
+     ngOnInit() {}
      setClasses() {
           return {
                first: this.product.id === 1,

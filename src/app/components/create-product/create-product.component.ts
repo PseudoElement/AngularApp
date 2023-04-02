@@ -1,6 +1,8 @@
 import { ModalService } from "../../services/modal.service";
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ProductsService } from "src/app/services/product.service";
+import { getAlertText } from "src/app/shared/heplers/getAlertText";
 
 @Component({
      selector: "app-create-product",
@@ -13,10 +15,15 @@ export class CreateProductComponent implements OnInit {
                Validators.minLength(4),
                Validators.required,
           ]),
-          author: new FormControl<string>("", [Validators.required]),
-          createdAt: new FormControl<string>(new Date().toUTCString()),
+          price: new FormControl<string>("", [
+               Validators.required,
+               Validators.pattern("^[0-9]*$"),
+          ]),
      });
-     constructor(public modalService: ModalService) {}
+     constructor(
+          public modalService: ModalService,
+          private productsService: ProductsService
+     ) {}
      ngOnInit(): void {}
      closeModal() {
           this.modalService.closeModal();
@@ -24,10 +31,32 @@ export class CreateProductComponent implements OnInit {
      stopPropagation(e: Event): void {
           e.stopPropagation();
      }
+     isValidForm(): boolean {
+          if (this.form.status === "VALID") {
+               return true;
+          } else {
+               alert(getAlertText(this.form.controls));
+               return false;
+          }
+     }
      handleSubmit(e: Event): void {
           e.preventDefault();
-          // console.log("TITLE", this.title);
-          console.log("FORM", this.form);
-          // console.log("FORM VALUE", this.form.value);
+          if (this.isValidForm()) {
+               console.log("FORM", this.form);
+               const newProduct = {
+                    title: this.form.value.title ?? "Default title",
+                    price: +this.form.value.price!,
+                    description: "Random Descript",
+                    category: "Sport",
+                    image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+                    rating: {
+                         rate: 10,
+                         count: 10,
+                    },
+               };
+               this.productsService.createProduct(newProduct).subscribe(() => {
+                    this.modalService.closeModal();
+               });
+          }
      }
 }

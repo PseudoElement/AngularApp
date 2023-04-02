@@ -1,23 +1,8 @@
 <div class="wrapper">
+     <nav>
+          <a routerLink="/products">Products</a>
+          <a routerLink="/about">About</a>
+     </nav>
      <app-error></app-error>
-     <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
-     <input type="text" placeholder="Search products..." [(ngModel)]="name" />
-     <button (click)="changeName()">Add 1 in input</button>
-     <button (click)="modalService.openModal()">
-          {{ modalService.isOpenModal ? "Hide" : "Show" }} form
-     </button>
-     <p *ngIf="isLoading">Wait please...</p>
-     <div *ngIf="products$ | async as products" class="product">
-          <app-product
-               *ngFor="
-                    let product of products | filterProducts : name;
-                    let i = index
-               "
-               [i]="i"
-               [product]="product"
-          ></app-product>
-     </div>
-     <app-modal *ngIf="modalService.isOpenModal" title="Modal Title">
-          <app-create-product></app-create-product>
-     </app-modal>
+     <router-outlet></router-outlet>
 </div>

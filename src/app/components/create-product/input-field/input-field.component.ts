@@ -30,7 +30,5 @@ export class InputFieldComponent {
      get control() {
           return this.form.controls[this.id];
      }
-     ngOnInit(): void {
-          console.log("FORM IN INPUT", this.form);
-     }
+     ngOnInit(): void {}
 }
