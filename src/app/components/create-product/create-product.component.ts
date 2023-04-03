@@ -14,10 +14,12 @@ export class CreateProductComponent implements OnInit {
           title: new FormControl<string>("", [
                Validators.minLength(4),
                Validators.required,
+               Validators.nullValidator,
           ]),
           price: new FormControl<string>("", [
                Validators.required,
                Validators.pattern("^[0-9]*$"),
+               Validators.nullValidator,
           ]),
      });
      constructor(
@@ -42,7 +44,6 @@ export class CreateProductComponent implements OnInit {
      handleSubmit(e: Event): void {
           e.preventDefault();
           if (this.isValidForm()) {
-               console.log("FORM", this.form);
                const newProduct = {
                     title: this.form.value.title ?? "Default title",
                     price: +this.form.value.price!,
@@ -54,8 +55,16 @@ export class CreateProductComponent implements OnInit {
                          count: 10,
                     },
                };
-               this.productsService.createProduct(newProduct).subscribe(() => {
-                    this.modalService.closeModal();
+               this.productsService.createProduct(newProduct).subscribe({
+                    next: (value) => {
+                         this.modalService.closeModal();
+                    },
+                    error: (value) => {
+                         console.log("error", value);
+                    },
+                    complete: () => {
+                         // console.log("Complete");
+                    },
                });
           }
      }

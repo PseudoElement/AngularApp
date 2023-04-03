@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ProductComponent } from "../components/product/product.component";
 import { ErrorComponent } from "../components/error/error.component";
-import { FilterProductsPipe } from "../pipes/filter-products.pipe";
 import { ModalComponent } from "../components/modal/modal.component";
 import { CreateProductComponent } from "../components/create-product/create-product.component";
 import { InputFieldComponent } from "../components/create-product/input-field/input-field.component";
@@ -13,7 +12,6 @@ import { DirectivesModule } from "./directives.module";
      declarations: [
           ProductComponent,
           ErrorComponent,
-          FilterProductsPipe,
           ModalComponent,
           CreateProductComponent,
           InputFieldComponent,
@@ -27,7 +25,6 @@ import { DirectivesModule } from "./directives.module";
      exports: [
           ProductComponent,
           ErrorComponent,
-          FilterProductsPipe,
           ModalComponent,
           CreateProductComponent,
           InputFieldComponent,
