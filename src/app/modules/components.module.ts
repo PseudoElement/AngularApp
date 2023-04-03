@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ProductComponent } from "./product/product.component";
-import { ErrorComponent } from "./error/error.component";
+import { ProductComponent } from "../components/product/product.component";
+import { ErrorComponent } from "../components/error/error.component";
 import { FilterProductsPipe } from "../pipes/filter-products.pipe";
-import { ModalComponent } from "./modal/modal.component";
-import { CreateProductComponent } from "./create-product/create-product.component";
-import { InputFieldComponent } from "./create-product/input-field/input-field.component";
+import { ModalComponent } from "../components/modal/modal.component";
+import { CreateProductComponent } from "../components/create-product/create-product.component";
+import { InputFieldComponent } from "../components/create-product/input-field/input-field.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { FocusDirective } from "../directives/focus.directive";
+import { DirectivesModule } from "./directives.module";
 
 @NgModule({
      declarations: [
@@ -17,9 +17,13 @@ import { FocusDirective } from "../directives/focus.directive";
           ModalComponent,
           CreateProductComponent,
           InputFieldComponent,
-          FocusDirective,
      ],
-     imports: [CommonModule, FormsModule, ReactiveFormsModule],
+     imports: [
+          CommonModule,
+          FormsModule,
+          ReactiveFormsModule,
+          DirectivesModule,
+     ],
      exports: [
           ProductComponent,
           ErrorComponent,

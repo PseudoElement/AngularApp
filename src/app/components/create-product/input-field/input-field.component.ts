@@ -1,11 +1,6 @@
 import { Component, Input } from "@angular/core";
-import {
-     ControlContainer,
-     FormControl,
-     FormGroup,
-     FormGroupDirective,
-     ValidationErrors,
-} from "@angular/forms";
+import { FormGroup } from "@angular/forms";
+import { FocusDirective } from "src/app/directives/focus.directive";
 
 @Component({
      selector: "app-input-field",

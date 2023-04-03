@@ -1,5 +1,5 @@
 import { ModalService } from "../../services/modal.service";
-import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProductsService } from "src/app/services/product.service";
 import { getAlertText } from "src/app/shared/heplers/getAlertText";
