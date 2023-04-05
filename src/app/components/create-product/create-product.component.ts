@@ -13,6 +13,7 @@ export class CreateProductComponent implements OnInit {
      form = new FormGroup({
           title: new FormControl<string>("", [
                Validators.minLength(4),
+               Validators.maxLength(12),
                Validators.required,
                Validators.nullValidator,
           ]),
@@ -22,28 +23,25 @@ export class CreateProductComponent implements OnInit {
                Validators.nullValidator,
           ]),
      });
+     errorName: string;
      constructor(
           public modalService: ModalService,
           private productsService: ProductsService
      ) {}
      ngOnInit(): void {}
+     onErrorChange(error: any) {
+          this.errorName = error;
+     }
      closeModal() {
           this.modalService.closeModal();
      }
      stopPropagation(e: Event): void {
           e.stopPropagation();
      }
-     isValidForm(): boolean {
-          if (this.form.status === "VALID") {
-               return true;
-          } else {
-               alert(getAlertText(this.form.controls));
-               return false;
-          }
-     }
      handleSubmit(e: Event): void {
           e.preventDefault();
-          if (this.isValidForm()) {
+          console.log("THIS FORM", this.form);
+          if (this.form.valid) {
                const newProduct = {
                     title: this.form.value.title ?? "Default title",
                     price: +this.form.value.price!,
@@ -66,6 +64,8 @@ export class CreateProductComponent implements OnInit {
                          // console.log("Complete");
                     },
                });
+          } else {
+               alert(getAlertText(this.errorName));
           }
      }
 }

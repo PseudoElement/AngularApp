@@ -1,7 +1,6 @@
-import { ProductFormControls } from "../types/productForm";
+import { errorsTransformer } from "../constants/errorsTransfromer";
 
-export const getAlertText = (controls: ProductFormControls) => {
-     return `Fill inputs ${Object.keys(controls)
-          .map((key) => key[0].toUpperCase() + key.slice(1))
-          .join(", ")}.`;
+export const getAlertText = (error: string) => {
+     //@ts-ignore
+     return errorsTransformer[error];
 };

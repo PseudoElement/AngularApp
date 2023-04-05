@@ -5,6 +5,7 @@
           [id]="id"
           type="text"
           [formControlName]="id"
+          (input)="onInputChange()"
      />
      <label
           *ngIf="control.errors && control.touched"

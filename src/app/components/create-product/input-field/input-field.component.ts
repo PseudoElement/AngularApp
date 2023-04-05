@@ -1,6 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { FocusDirective } from "src/app/directives/focus.directive";
 
 @Component({
      selector: "app-input-field",
@@ -16,6 +15,7 @@ import { FocusDirective } from "src/app/directives/focus.directive";
 export class InputFieldComponent {
      @Input() id: string;
      @Input() form: FormGroup;
+     @Output() errorChange = new EventEmitter<string>();
      JSON;
      Object;
      constructor() {
@@ -26,4 +26,13 @@ export class InputFieldComponent {
           return this.form.controls[this.id];
      }
      ngOnInit(): void {}
+     onInputChange() {
+          if (this.control.errors) {
+               this.errorChange.emit(
+                    Object.keys(this.control.errors!).join("")
+               );
+          } else {
+               this.errorChange.emit("");
+          }
+     }
 }

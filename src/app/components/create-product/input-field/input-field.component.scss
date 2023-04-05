@@ -2,6 +2,9 @@ input {
      box-sizing: border-box;
      font-size: 30px;
      width: 100%;
+     &.ng-invalid.ng-touched.ng-dirty {
+          border: 2px solid red;
+     }
 }
 label {
      font-size: 15px;

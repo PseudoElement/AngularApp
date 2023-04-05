@@ -4,8 +4,16 @@
      (click)="stopPropagation($event)"
 >
      <h1>Form</h1>
-     <app-input-field [form]="form" [id]="'title'"></app-input-field>
-     <app-input-field [form]="form" [id]="'price'"></app-input-field>
+     <app-input-field
+          (errorChange)="onErrorChange($event)"
+          [form]="form"
+          [id]="'title'"
+     ></app-input-field>
+     <app-input-field
+          (errorChange)="onErrorChange($event)"
+          [form]="form"
+          [id]="'price'"
+     ></app-input-field>
      <button>Submit</button>
      <button type="button" (click)="closeModal()">Close modal</button>
 </form>
