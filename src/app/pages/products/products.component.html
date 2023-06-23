@@ -1,6 +1,16 @@
 <div class="wrapper">
      <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
-     <input type="text" placeholder="Search products..." [(ngModel)]="name" />
+     <input
+          type="text"
+          placeholder="Search products..."
+          [(ngModel)]="name"
+          (ngModelChange)="onNgModelChange($event)"
+     />
+     <app-input
+          ngDefaultControl
+          [(ngModel)]="name"
+          (ngModelChange)="onNgModelChange($event)"
+     ></app-input>
      <button (click)="changeName()">Add 1 in input</button>
      <button *ngIf="!(modalService.isOpenModal$ | async)" (click)="openModal()">
           Show form

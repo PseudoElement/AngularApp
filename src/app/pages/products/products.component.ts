@@ -13,7 +13,7 @@ import { Product } from "src/app/shared/types/products";
 export class ProductsComponent implements OnInit, OnChanges {
      title = "AngularApp";
      // private route: ActivatedRoute;
-     @Input() name: string = "";
+     @Input() name: string = "NAME";
      @Input() products: Product[] = this.productService.products;
      isLoading = false;
      // products$: Observable<Product[]>;
@@ -46,5 +46,9 @@ export class ProductsComponent implements OnInit, OnChanges {
      }
      ngOnChanges(changes: SimpleChanges): void {
           console.log("CHANGES", changes);
+     }
+
+     onNgModelChange(e: Event) {
+          console.log(this.name);
      }
 }
