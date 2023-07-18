@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { BehaviorSubject, interval, take } from "rxjs";
 import { ITestObject } from "src/app/model/test";
 import { values } from "src/app/shared/constants/test";
@@ -18,7 +19,16 @@ export class TestComponent {
      shouldFilterByNumber: boolean = false;
      shouldSortByCreationDate: boolean = false;
 
-     constructor() {
+     form: FormGroup;
+     countries: Array<any> = [
+          { name: "India", value: "india" },
+          { name: "France", value: "france" },
+          { name: "USA", value: "USA" },
+          { name: "Germany", value: "germany" },
+          { name: "Japan", value: "Japan" },
+     ];
+
+     constructor(private fb: FormBuilder) {
           interval(300)
                .pipe(take(5))
                .subscribe((index) => {
@@ -30,9 +40,31 @@ export class TestComponent {
                     ];
                     this.values$.next(newArray);
                });
+          this.form = fb.group({
+               selectedCountries: new FormArray([]),
+          });
      }
 
-     onCheckboxCreatedChange(e: any, obj: ITestObject) {
+     onCheckboxCompletedChange(e: any, obj: ITestObject) {
           obj.isCompleted = e.target.checked ? true : false;
+     }
+
+     onCheckboxChange(event: any) {
+          console.log("TFC", this.form.controls.selectedCountries);
+          const selectedCountries = this.form.controls[
+               "selectedCountries"
+          ] as FormArray;
+          if (event.target.checked) {
+               selectedCountries.push(new FormControl(event.target.value));
+          } else {
+               const index = selectedCountries.controls.findIndex(
+                    (x) => x.value === event.target.value
+               );
+               selectedCountries.removeAt(index);
+          }
+     }
+
+     submit() {
+          console.log(this.form.value);
      }
 }

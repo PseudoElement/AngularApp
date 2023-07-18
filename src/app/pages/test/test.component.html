@@ -33,7 +33,7 @@
           <input
                type="checkbox"
                [checked]="obj.isCompleted"
-               (change)="onCheckboxCreatedChange($event, obj)"
+               (change)="onCheckboxCompletedChange($event, obj)"
           />
           {{ obj.id }}. {{ obj.value }} created at
           {{ obj.createdAt | date : "dd.MM.yyyy &nbsp; HH:mm:ss.SSS" }}. Status
@@ -41,3 +41,20 @@
           <b>{{ obj.isCompleted ? "Completed" : "Not completed" }}</b>
      </div>
 </div>
+
+<section>
+     <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div *ngFor="let country of countries; let i = index">
+               <input
+                    type="checkbox"
+                    formArrayName="selectedCountries"
+                    [value]="country.value"
+                    (change)="onCheckboxChange($event)"
+               />
+               {{ country.name }}
+          </div>
+          <button type="submit">Submit</button>
+     </form>
+
+     <p>{{ form.value | json }}</p>
+</section>
