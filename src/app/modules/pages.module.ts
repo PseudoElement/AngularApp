@@ -6,10 +6,11 @@ import { ProductsComponent } from "../pages/products/products.component";
 import { AboutComponent } from "../pages/about/about.component";
 import { PipesModule } from "./pipes.module";
 import { DirectivesModule } from "./directives.module";
+import { TestComponent } from '../pages/test/test.component';
 
 @NgModule({
-     declarations: [ProductsComponent, AboutComponent],
-     exports: [ProductsComponent, AboutComponent],
+     declarations: [ProductsComponent, AboutComponent, TestComponent],
+     exports: [ProductsComponent, AboutComponent, TestComponent],
      imports: [
           CommonModule,
           FormsModule,

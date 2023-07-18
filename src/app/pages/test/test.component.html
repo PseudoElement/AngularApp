@@ -1,0 +1,43 @@
+<div [ngStyle]="{ margin: '100px' }">
+     <h1>
+          <input
+               type="checkbox"
+               (change)="shouldFilterByLength = !shouldFilterByLength"
+          />
+          Filter by length
+          <input
+               type="checkbox"
+               (change)="shouldFilterByNumber = !shouldFilterByNumber"
+          />
+          Filter by number
+          <input
+               type="checkbox"
+               (change)="shouldFilterByCompleted = !shouldFilterByCompleted"
+          />
+          Filter by completed
+          <input
+               type="checkbox"
+               (change)="shouldSortByCreationDate = !shouldSortByCreationDate"
+          />
+          Sort by createdAt
+     </h1>
+     <div
+          *ngFor="
+               let obj of (values$ | async)!
+                    | filterByLength : 10 : shouldFilterByLength
+                    | filterByCompleted : shouldFilterByCompleted
+                    | filterByNumber : shouldFilterByNumber
+                    | sortByCreatedAt : shouldSortByCreationDate
+          "
+     >
+          <input
+               type="checkbox"
+               [checked]="obj.isCompleted"
+               (change)="onCheckboxCreatedChange($event, obj)"
+          />
+          {{ obj.id }}. {{ obj.value }} created at
+          {{ obj.createdAt | date : "dd.MM.yyyy &nbsp; HH:mm:ss.SSS" }}. Status
+          -
+          <b>{{ obj.isCompleted ? "Completed" : "Not completed" }}</b>
+     </div>
+</div>
