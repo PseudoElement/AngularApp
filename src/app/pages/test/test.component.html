@@ -40,6 +40,9 @@
           -
           <b>{{ obj.isCompleted ? "Completed" : "Not completed" }}</b>
      </div>
+     <div *ngFor="let couple of couples | filterByCompleted">
+          Husband - {{ couple.husband }}, wife - {{ couple.wife }}
+     </div>
 </div>
 
 <section>

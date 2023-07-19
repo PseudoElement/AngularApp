@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { BehaviorSubject, interval, take } from "rxjs";
-import { ITestObject } from "src/app/model/test";
+import { INewTestObject, ITestObject } from "src/app/model/test";
 import { values } from "src/app/shared/constants/test";
 
 @Component({
@@ -26,6 +26,12 @@ export class TestComponent {
           { name: "USA", value: "USA" },
           { name: "Germany", value: "germany" },
           { name: "Japan", value: "Japan" },
+     ];
+
+     couples: INewTestObject[] = [
+          { husband: "michael", wife: "paul" },
+          { husband: "Steve", wife: "Lili" },
+          { husband: "Joe", wife: "Nady" },
      ];
 
      constructor(private fb: FormBuilder) {

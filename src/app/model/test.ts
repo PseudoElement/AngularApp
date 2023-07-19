@@ -4,3 +4,7 @@ export interface ITestObject {
      isCompleted: boolean;
      createdAt: Date;
 }
+export interface INewTestObject {
+     husband: string;
+     wife: string;
+}
