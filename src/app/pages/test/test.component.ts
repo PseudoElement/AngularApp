@@ -1,4 +1,11 @@
-import { Component } from "@angular/core";
+import {
+     Component,
+     ElementRef,
+     OnInit,
+     TemplateRef,
+     ViewChild,
+     ViewContainerRef,
+} from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { BehaviorSubject, interval, take } from "rxjs";
 import { INewTestObject, ITestObject } from "src/app/model/test";
@@ -9,7 +16,13 @@ import { values } from "src/app/shared/constants/test";
      templateUrl: "./test.component.html",
      styleUrls: ["./test.component.scss"],
 })
-export class TestComponent {
+export class TestComponent implements OnInit {
+     @ViewChild("inputRef", { read: ElementRef, static: true })
+     inputRef: ElementRef;
+     @ViewChild("tempRef", { read: TemplateRef, static: true })
+     tempRef: TemplateRef<any>;
+     @ViewChild("h1Ref", { read: ViewContainerRef, static: true })
+     h1Ref: ViewContainerRef;
      values$: BehaviorSubject<ITestObject[]> = new BehaviorSubject(
           [] as ITestObject[]
      );
@@ -34,7 +47,11 @@ export class TestComponent {
           { husband: "Joe", wife: "Nady" },
      ];
 
-     constructor(private fb: FormBuilder) {
+     constructor(
+          private fb: FormBuilder,
+          private viewContainerRef: ViewContainerRef,
+          private host: ElementRef
+     ) {
           interval(300)
                .pipe(take(5))
                .subscribe((index) => {
@@ -48,6 +65,29 @@ export class TestComponent {
                });
           this.form = fb.group({
                selectedCountries: new FormArray([]),
+          });
+     }
+
+     ngOnInit(): void {}
+
+     ngAfterViewInit() {
+          const elements = [
+               this.inputRef.nativeElement,
+               this.inputRef.nativeElement,
+               this.inputRef.nativeElement,
+               this.inputRef.nativeElement,
+          ];
+          console.log(this.host);
+          this.host.nativeElement.style.padding = "150px";
+          // this._appendElements(elements);
+          // setTimeout(() => this.viewContainerRef.clear(), 5000);
+     }
+
+     private _appendElements(elements: HTMLElement[]): void {
+          if (!elements.length) return;
+          elements.forEach((el) => {
+               const clone = el.cloneNode(true);
+               this.host.nativeElement.append(clone);
           });
      }
 

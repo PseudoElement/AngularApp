@@ -1,4 +1,12 @@
-<div (click)="closeModal()" class="blur">
+<div
+     *ngIf="isOpen"
+     class="modal"
+     [class.fullscreen]="size === 'fullscreen'"
+     scroll="no"
+>
      <h1>{{ title | titlecase }}</h1>
+     <span class="material-symbols-outlined close-btn" (click)="closeModal()">
+          close
+     </span>
      <ng-content></ng-content>
 </div>

@@ -9,6 +9,7 @@ import { FormsModule } from "@angular/forms"; // for [(ngModel)]
 import { ComponentsModule } from "./modules/components.module";
 import { PagesModule } from "./modules/pages.module";
 import { DirectivesModule } from "./modules/directives.module";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
      imports: [
@@ -20,6 +21,7 @@ import { DirectivesModule } from "./modules/directives.module";
           FormsModule,
           ComponentsModule,
           PagesModule,
+          MatIconModule,
      ],
      declarations: [AppComponent],
      providers: [],

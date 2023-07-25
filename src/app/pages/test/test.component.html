@@ -44,7 +44,14 @@
           Husband - {{ couple.husband }}, wife - {{ couple.wife }}
      </div>
 </div>
-
+<section>
+     <app-input #inputRef></app-input>
+     <!-- <ng-container *ngTemplateOutlet="tempRef"></ng-container> -->
+     <h1 #h1Ref>H1_YEXY</h1>
+     <ng-template #tempRef>
+          <div>TEMPLATE REF</div>
+     </ng-template>
+</section>
 <section>
      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
           <div *ngFor="let country of countries; let i = index">
@@ -60,4 +67,10 @@
      </form>
 
      <p>{{ form.value | json }}</p>
+</section>
+<section class="modal-section">
+     <button (click)="modal1.openModal()">Open Modal 1</button>
+     <button (click)="modal2.openModal()">Open Modal 2</button>
+     <app-modal #modal1 [size]="'fullscreen'">MODAL_1_CONTENT</app-modal>
+     <app-modal #modal2>MODAL_2_CONTENT</app-modal>
 </section>
