@@ -10,6 +10,7 @@ import { ComponentsModule } from "./modules/components.module";
 import { PagesModule } from "./modules/pages.module";
 import { DirectivesModule } from "./modules/directives.module";
 import { MatIconModule } from "@angular/material/icon";
+import { ButtonComponent } from "./components/button/button.component";
 
 @NgModule({
      imports: [

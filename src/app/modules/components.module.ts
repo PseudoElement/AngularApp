@@ -7,7 +7,8 @@ import { CreateProductComponent } from "../components/create-product/create-prod
 import { InputFieldComponent } from "../components/create-product/input-field/input-field.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DirectivesModule } from "./directives.module";
-import { InputComponent } from '../components/input/input.component';
+import { InputComponent } from "../components/input/input.component";
+import { ButtonComponent } from "../components/button/button.component";
 
 @NgModule({
      declarations: [
@@ -17,6 +18,7 @@ import { InputComponent } from '../components/input/input.component';
           CreateProductComponent,
           InputFieldComponent,
           InputComponent,
+          ButtonComponent,
      ],
      imports: [
           CommonModule,
@@ -31,6 +33,7 @@ import { InputComponent } from '../components/input/input.component';
           CreateProductComponent,
           InputFieldComponent,
           InputComponent,
+          ButtonComponent,
      ],
 })
 export class ComponentsModule {}
