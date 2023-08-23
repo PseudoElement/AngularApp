@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DirectivesModule } from "./directives.module";
 import { InputComponent } from "../components/input/input.component";
 import { ButtonComponent } from "../components/button/button.component";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
      declarations: [
@@ -25,6 +26,7 @@ import { ButtonComponent } from "../components/button/button.component";
           FormsModule,
           ReactiveFormsModule,
           DirectivesModule,
+          SharedModule,
      ],
      exports: [
           ProductComponent,

@@ -7,6 +7,7 @@ import { AboutComponent } from "../pages/about/about.component";
 import { PipesModule } from "./pipes.module";
 import { DirectivesModule } from "./directives.module";
 import { TestComponent } from "../pages/test/test.component";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
      declarations: [ProductsComponent, AboutComponent, TestComponent],
@@ -18,6 +19,7 @@ import { TestComponent } from "../pages/test/test.component";
           PipesModule,
           DirectivesModule,
           ReactiveFormsModule,
+          SharedModule,
      ],
 })
 export class PagesModule {}

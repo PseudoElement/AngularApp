@@ -10,7 +10,7 @@ import { ComponentsModule } from "./modules/components.module";
 import { PagesModule } from "./modules/pages.module";
 import { DirectivesModule } from "./modules/directives.module";
 import { MatIconModule } from "@angular/material/icon";
-import { ButtonComponent } from "./components/button/button.component";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
      imports: [
@@ -23,6 +23,7 @@ import { ButtonComponent } from "./components/button/button.component";
           ComponentsModule,
           PagesModule,
           MatIconModule,
+          SharedModule,
      ],
      declarations: [AppComponent],
      providers: [],

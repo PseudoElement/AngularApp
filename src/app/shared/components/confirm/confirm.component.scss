@@ -1,0 +1,29 @@
+.confirm-wrapper {
+     width: 100%;
+     max-width: 500px;
+     padding: 20px;
+     border-radius: 20px;
+     position: relative;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     top: 20px;
+     left: 50%;
+     transform: translateX(-50%);
+     background-color: gray;
+     transition: all 0.4s;
+}
+.title {
+     width: 100%;
+     text-align: center;
+}
+.body {
+}
+.buttons {
+     width: 100%;
+     font-size: 32px;
+     font-weight: bold;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+}

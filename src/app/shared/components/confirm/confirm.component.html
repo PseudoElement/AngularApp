@@ -1,0 +1,14 @@
+<app-backdrop *ngIf="data">
+     <div class="confirm-wrapper">
+          <h3 class="title">{{ data.title }}</h3>
+          <p class="body">{{ data.message }}</p>
+          <div class="buttons">
+               <button
+                    *ngFor="let btn of data.buttons"
+                    (click)="confirm(btn.isConfirmed)"
+               >
+                    {{ btn.text }}
+               </button>
+          </div>
+     </div>
+</app-backdrop>
