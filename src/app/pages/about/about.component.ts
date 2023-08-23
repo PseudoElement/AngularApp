@@ -1,5 +1,8 @@
 import { Component } from "@angular/core";
-import { ABOUT_CONFIRM } from "src/app/shared/constants/confirms";
+import {
+     ABOUT_CONFIRM,
+     ABOUT_CONFIRM_2,
+} from "src/app/shared/constants/confirms";
 import { ConfirmService } from "src/app/shared/services/confirm.service";
 
 @Component({
@@ -12,5 +15,10 @@ export class AboutComponent {
      public async showConfirm() {
           const res = await this._confirmSrv.showConfirm(ABOUT_CONFIRM);
           console.log("C_RESPONSE", res);
+     }
+
+     public async showConfirm2() {
+          const res = await this._confirmSrv.showConfirm(ABOUT_CONFIRM_2);
+          console.log("C_RESPONSE_2", res);
      }
 }
