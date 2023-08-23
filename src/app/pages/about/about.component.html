@@ -1,9 +1,15 @@
 <p>
      about works!
-     <button (click)="showConfirm()" [ngStyle]="{ 'font-size': 50 }">
+     <button (click)="showConfirm()" [ngStyle]="{ 'font-size': '50px' }">
           SHOW CONFIRM
      </button>
-     <button (click)="showConfirm2()" [ngStyle]="{ 'font-size': 50 }">
+     <button
+          (click)="showConfirm2()"
+          [ngStyle]="{
+               color: 'red',
+               'font-size': '50px'
+          }"
+     >
           SHOW CONFIRM 2
      </button>
 </p>
