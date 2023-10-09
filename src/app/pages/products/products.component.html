@@ -1,33 +1,36 @@
 <div class="wrapper">
-     <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
-     <input
-          type="text"
-          placeholder="Search products..."
-          [(ngModel)]="name"
-          (ngModelChange)="onNgModelChange($event)"
-     />
-     <app-input
-          ngDefaultControl
-          [(ngModel)]="name"
-          (ngModelChange)="onNgModelChange($event)"
-     ></app-input>
-     <button (click)="changeName()">Add 1 in input</button>
-     <button *ngIf="!(modalService.isOpenModal$ | async)" (click)="openModal()">
-          Show form
-     </button>
-     <p *ngIf="isLoading">Wait please...</p>
-     <div *ngIf="productService.products" class="product">
-          <app-product
-               *ngFor="
-                    let product of productService.products
-                         | filterProducts : name;
-                    let i = index
-               "
-               [i]="i"
-               [product]="product"
-          ></app-product>
-     </div>
-     <app-modal *ngIf="modalService.isOpenModal$ | async" title="Modal Title">
-          <app-create-product></app-create-product>
-     </app-modal>
+    <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
+    <input
+        type="text"
+        placeholder="Search products..."
+        [(ngModel)]="name"
+        (ngModelChange)="onNgModelChange($event)"
+    />
+    <app-input
+        ngDefaultControl
+        [(ngModel)]="name"
+        (ngModelChange)="onNgModelChange($event)"
+    ></app-input>
+    <button (click)="changeName()">Add 1 in input</button>
+    <button *ngIf="!(modalService.isOpenModal$ | async)" (click)="openModal()">
+        Show form
+    </button>
+    <p *ngIf="isLoading">Wait please...</p>
+    <div *ngIf="productService.products" class="product">
+        <app-product
+            *ngFor="
+                let product of productService.products | filterProducts : name;
+                let i = index
+            "
+            [i]="i"
+            [product]="product"
+        ></app-product>
+    </div>
+    <app-modal *ngIf="modalService.isOpenModal$ | async" title="Modal Title">
+        <app-create-product></app-create-product>
+    </app-modal>
+    <app-input-checkbox
+        [form]="form"
+        [config]="CHECKBOX_CONFIG"
+    ></app-input-checkbox>
 </div>

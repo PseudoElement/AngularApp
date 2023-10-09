@@ -13,3 +13,8 @@
           SHOW CONFIRM 2
      </button>
 </p>
+
+<h1 *ngIf="obs$ | async as obj" [ngStyle]="{ color: 'red' }">
+     <h2>{{ obj.title }}</h2>
+     {{ obj.count }}
+</h1>

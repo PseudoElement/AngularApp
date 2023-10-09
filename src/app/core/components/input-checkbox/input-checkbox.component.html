@@ -1,0 +1,22 @@
+<div
+    #inputBaseDir="appInputBase"
+    appInputBase
+    [formGroup]="form"
+    class="input-base-checkbox"
+    [ngStyle]="{ display: 'flex', 'flex-direction': config.flexDirection }"
+>
+    <div
+        *ngFor="let option of options"
+        class="checkbox-wrapper"
+        (click)="setCheckOnCheckbox(option.id)"
+    >
+        <input
+            [formGroupName]="config.name"
+            [id]="option.id"
+            [type]="config.type"
+            [value]="option.value"
+            [checked]="option.isChecked"
+        />
+        <label [for]="option.id">{{ option.label }}</label>
+    </div>
+</div>

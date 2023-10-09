@@ -8,18 +8,20 @@ import { PipesModule } from "./pipes.module";
 import { DirectivesModule } from "./directives.module";
 import { TestComponent } from "../pages/test/test.component";
 import { SharedModule } from "../shared/shared.module";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
-     declarations: [ProductsComponent, AboutComponent, TestComponent],
-     exports: [ProductsComponent, AboutComponent, TestComponent],
-     imports: [
-          CommonModule,
-          FormsModule,
-          ComponentsModule,
-          PipesModule,
-          DirectivesModule,
-          ReactiveFormsModule,
-          SharedModule,
-     ],
+    declarations: [ProductsComponent, AboutComponent, TestComponent],
+    exports: [ProductsComponent, AboutComponent, TestComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ComponentsModule,
+        PipesModule,
+        DirectivesModule,
+        ReactiveFormsModule,
+        SharedModule,
+        CoreModule,
+    ],
 })
 export class PagesModule {}
