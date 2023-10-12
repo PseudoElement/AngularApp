@@ -4,6 +4,7 @@
     [formGroup]="form"
     class="input-base-checkbox"
     [ngStyle]="{ display: 'flex', 'flex-direction': config.flexDirection }"
+    (click)="log()"
 >
     <div
         *ngFor="let option of options"
@@ -11,7 +12,7 @@
         (click)="setCheckOnCheckbox(option.id)"
     >
         <input
-            [formGroupName]="config.name"
+            [formControlName]="option.value"
             [id]="option.id"
             [type]="config.type"
             [value]="option.value"

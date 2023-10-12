@@ -1,0 +1,21 @@
+<section>
+    <h1>First Service FORM</h1>
+    <div [formGroup]="firstForm">
+        <app-input-text
+            [form]="firstForm"
+            [input]="FIRST_FORM_INPUTS['NAME']"
+        ></app-input-text>
+        <app-input-text
+            [form]="firstForm"
+            [input]="FIRST_FORM_INPUTS['PASSWORD']"
+        ></app-input-text>
+        <app-input-text
+            [form]="firstForm"
+            [input]="FIRST_FORM_INPUTS['EMAIL']"
+        ></app-input-text>
+        <app-input-text
+            [form]="firstForm"
+            [input]="FIRST_FORM_INPUTS['SURNAME']"
+        ></app-input-text>
+    </div>
+</section>

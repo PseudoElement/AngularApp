@@ -5,7 +5,7 @@ import {
     ValidatorFn,
     Validators,
 } from "@angular/forms";
-import { IInputConfig } from "../model/input-base.model";
+import { IInput } from "../model/input-base.model";
 
 @Directive({
     selector: "[appInputBase]",
@@ -14,7 +14,7 @@ import { IInputConfig } from "../model/input-base.model";
 export class InputBaseDirective implements OnInit {
     // @Output("appInputBase") directive = this;
     @Input() form: FormGroup;
-    @Input() config: IInputConfig;
+    @Input() config: IInput;
     @Output() onFocusChange: EventEmitter<Event> = new EventEmitter();
     @Output() onBlurChange: EventEmitter<Event> = new EventEmitter();
     public control: FormControl;

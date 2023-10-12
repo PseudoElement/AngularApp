@@ -13,20 +13,20 @@ import { MatIconModule } from "@angular/material/icon";
 import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
-     imports: [
-          DirectivesModule,
-          BrowserModule,
-          AppRoutingModule,
-          HttpClientModule,
-          BrowserAnimationsModule,
-          FormsModule,
-          ComponentsModule,
-          PagesModule,
-          MatIconModule,
-          SharedModule,
-     ],
-     declarations: [AppComponent],
-     providers: [],
-     bootstrap: [AppComponent],
+    imports: [
+        DirectivesModule,
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ComponentsModule,
+        PagesModule,
+        MatIconModule,
+        SharedModule,
+    ],
+    declarations: [AppComponent],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

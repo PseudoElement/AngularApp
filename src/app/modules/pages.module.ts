@@ -9,10 +9,21 @@ import { DirectivesModule } from "./directives.module";
 import { TestComponent } from "../pages/test/test.component";
 import { SharedModule } from "../shared/shared.module";
 import { CoreModule } from "../core/core.module";
+import { FormPageComponent } from "../pages/form-page/form-page.component";
 
 @NgModule({
-    declarations: [ProductsComponent, AboutComponent, TestComponent],
-    exports: [ProductsComponent, AboutComponent, TestComponent],
+    declarations: [
+        ProductsComponent,
+        AboutComponent,
+        TestComponent,
+        FormPageComponent,
+    ],
+    exports: [
+        ProductsComponent,
+        AboutComponent,
+        TestComponent,
+        FormPageComponent,
+    ],
     imports: [
         CommonModule,
         FormsModule,

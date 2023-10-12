@@ -1,8 +1,9 @@
-export interface IInputConfig {
+export interface IInput {
     value: string;
-    readonly: boolean;
     name: string;
     type: InputType;
+    readonly?: boolean;
+    label?: string;
     disabled?: boolean;
     validators: {
         required?: boolean;
@@ -15,25 +16,25 @@ export interface IInputConfig {
     };
 }
 
-export interface IInputSelectConfig extends IInputConfig {
+export interface IInputSelect extends IInput {
     selectedOption: number;
     options: IOption[];
 }
 
-export interface IInputTextConfig extends IInputConfig {
+export interface IInputText extends IInput {
     placeholder?: string;
 }
-export interface IInputPasswordConfig extends IInputTextConfig {}
+export interface IInputPassword extends IInputText {}
 
-export interface IInputNumberConfig extends IInputConfig {
+export interface IInputNumber extends IInput {
     count?: number;
     maxCount?: number;
 }
 
-export interface IInputRadioConfig extends IInputConfig {
+export interface IInputRadio extends IInput {
     radioBtns: boolean;
 }
-export interface IInputCheckBoxConfig extends IInputConfig {
+export interface IInputCheckBox extends IInput {
     checkboxes: ICheckbox[];
     flexDirection: "row" | "column";
 }

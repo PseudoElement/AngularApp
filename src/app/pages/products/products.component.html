@@ -29,8 +29,13 @@
     <app-modal *ngIf="modalService.isOpenModal$ | async" title="Modal Title">
         <app-create-product></app-create-product>
     </app-modal>
-    <app-input-checkbox
-        [form]="form"
-        [config]="CHECKBOX_CONFIG"
-    ></app-input-checkbox>
+    <section style="border: 2px solid red">
+        <form [formGroup]="form">
+            <h1>FORM</h1>
+            <app-input-checkbox
+                [form]="form"
+                [config]="CHECKBOX_CONFIG"
+            ></app-input-checkbox>
+        </form>
+    </section>
 </div>

@@ -1,13 +1,5 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild,
-} from "@angular/core";
-import { InputBaseDirective } from "../../directives/input-base.directive";
-import { ICheckbox, IInputCheckBoxConfig } from "../../model";
+import { Component, Input, OnInit } from "@angular/core";
+import { ICheckbox, IInputCheckBox } from "../../model";
 import { FormGroup } from "@angular/forms";
 
 @Component({
@@ -17,21 +9,20 @@ import { FormGroup } from "@angular/forms";
 })
 export class InputCheckboxComponent implements OnInit {
     @Input() form: FormGroup;
-    @Input() config!: IInputCheckBoxConfig;
-    @Output() onCheckChange: EventEmitter<string[]> = new EventEmitter();
-    @ViewChild("inputBaseDir") inputBaseDir: InputBaseDirective;
+    @Input() config!: IInputCheckBox;
     options: ICheckbox[];
     constructor() {}
     ngOnInit(): void {
         this.options = this.config.checkboxes;
     }
     setCheckOnCheckbox(id: number) {
-        const checked = this.config.checkboxes.find(
-            (checkbox) => checkbox.id === id
-        )!;
+        const checked = this.options.find((checkbox) => checkbox.id === id)!;
         checked.isChecked = !checked?.isChecked;
         const checkedOptions = this._findAllCheckedOptions();
-        this.onCheckChange.emit(checkedOptions);
+        this.form.controls[this.config.name].setValue(checkedOptions);
+    }
+    log() {
+        console.log("form", this.form);
     }
     private _findAllCheckedOptions() {
         return this.options

@@ -1,4 +1,4 @@
-import { OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { OnChanges, OnDestroy, OnInit, SimpleChanges } from "@angular/core";
 import { Component, Input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {
@@ -21,6 +21,7 @@ import {
     of,
     switchMap,
     take,
+    takeUntil,
     tap,
 } from "rxjs";
 import { ModalService } from "src/app/services/modal.service";
@@ -28,7 +29,8 @@ import { ProductsService } from "src/app/services/product.service";
 import { Product } from "src/app/shared/types/products";
 import { ajax } from "rxjs/ajax";
 import { FormGroup } from "@angular/forms";
-import { IInputCheckBoxConfig } from "src/app/core/model";
+import { FormBuilderService } from "src/app/core/services/form-builder.service";
+import { IInputCheckBox } from "src/app/core/model";
 
 interface IRes {
     completed: boolean;
@@ -42,8 +44,10 @@ interface IRes {
     templateUrl: "./products.component.html",
     styleUrls: ["./products.component.scss"],
 })
-export class ProductsComponent implements OnInit, OnChanges {
-    CHECKBOX_CONFIG: IInputCheckBoxConfig = {
+export class ProductsComponent implements OnInit, OnDestroy {
+    @Input() name: string = "NAME";
+    @Input() products: Product[] = this.productService.products;
+    CHECKBOX_CONFIG: IInputCheckBox = {
         flexDirection: "column",
         name: "first",
         readonly: false,
@@ -56,24 +60,40 @@ export class ProductsComponent implements OnInit, OnChanges {
                 isChecked: false,
                 id: 1,
             },
+            {
+                value: "value 2",
+                label: "VALUE 2",
+                isChecked: false,
+                id: 2,
+            },
+            {
+                value: "value 3",
+                label: "VALUE 3",
+                isChecked: false,
+                id: 3,
+            },
+            {
+                value: "value 4",
+                label: "VALUE 4",
+                isChecked: false,
+                id: 4,
+            },
         ],
         validators: { required: true },
-        value: this.CHECKBOX_CONFIG.checkboxes[0],
+        value: "value 1",
     };
 
     title = "AngularApp";
-    // private route: ActivatedRoute;
     id = 1;
-    @Input() name: string = "NAME";
-    @Input() products: Product[] = this.productService.products;
     isLoading = false;
-    // products$: Observable<Product[]>;
+    isDestroyed$: Subject<boolean> = new Subject();
     obs$ = new BehaviorSubject(this.name);
     form: FormGroup = new FormGroup({});
 
     constructor(
         public productService: ProductsService,
-        public modalService: ModalService
+        public modalService: ModalService,
+        private _formBuilderSrv: FormBuilderService
     ) {
         from([1, 2, 3, 4, 5, 6])
             .pipe(
@@ -113,20 +133,19 @@ export class ProductsComponent implements OnInit, OnChanges {
 
     async ngOnInit(): Promise<any> {
         this.isLoading = true;
-        // this.products$ = this.productService.getAll(5).pipe(
-        //      tap((val) => {
-        //           this.isLoading = false;
-        //      })
-        // );
         this.productService.getAll(5).subscribe((products) => {
             this.products = products;
             this.isLoading = false;
         });
-        // const response = await fetch("https://fakestoreapi.com/products");  //ЧЕРЕЗ ФЕТЧ
-        // ...................
+        this.form.valueChanges
+            .pipe(takeUntil(this.isDestroyed$))
+            .subscribe((val) => {
+                console.log("formValue", val);
+            });
     }
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log("CHANGES", changes);
+
+    ngOnDestroy(): void {
+        this.isDestroyed$.next(true);
     }
 
     onNgModelChange(name: string) {
