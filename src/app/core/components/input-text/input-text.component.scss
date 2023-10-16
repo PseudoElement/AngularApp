@@ -1,0 +1,10 @@
+.input-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 10px 0;
+    label {
+        margin-bottom: 5px;
+        font-style: italic;
+    }
+}

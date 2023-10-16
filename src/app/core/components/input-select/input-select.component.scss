@@ -1,0 +1,29 @@
+.input-select-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 10px 0;
+    cursor: pointer;
+
+    label {
+        margin-bottom: 5px;
+        font-style: italic;
+    }
+    .control-wrapper {
+        > option {
+            background-color: gray;
+        }
+        .options {
+            background-color: bisque;
+            option {
+                &:hover {
+                    transition: all 0.2s;
+                    opacity: 0.3;
+                }
+            }
+            option:not(:last-child) {
+                border-bottom: 1px solid red;
+            }
+        }
+    }
+}

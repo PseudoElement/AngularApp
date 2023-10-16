@@ -1,1 +1,22 @@
-<p>input-select works!</p>
+<div [formGroup]="form" class="input-select-wrapper">
+    <label *ngIf="input.label">{{ input.label }}</label>
+    <div
+        [formControlName]="input.name"
+        ngDefaultControl
+        (click)="toggleDropdown()"
+        class="control-wrapper"
+    >
+        <option>
+            {{ input.selectedOption?.text || input.placeholder || "..." }}
+        </option>
+        <div *ngIf="isOpenDropdown" class="options">
+            <option
+                *ngFor="let option of input.options"
+                [value]="option.value"
+                (click)="selectOption(option)"
+            >
+                {{ option.text }}
+            </option>
+        </div>
+    </div>
+</div>

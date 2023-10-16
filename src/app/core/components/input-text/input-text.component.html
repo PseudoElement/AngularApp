@@ -1,7 +1,9 @@
-<div [formGroup]="form">
+<div [formGroup]="form" class="input-text-wrapper">
     <label *ngIf="input.label">{{ input.label }}</label>
     <input
-        [ngStyle]="{ border: isValid ? '1px solid black' : '2px solid red' }"
+        [ngStyle]="{
+            border: isValid ? '1px solid black' : '2px solid red'
+        }"
         [formControlName]="input.name"
         [type]="input.type"
         [readonly]="input.readonly"

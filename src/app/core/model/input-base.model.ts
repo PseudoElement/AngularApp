@@ -1,5 +1,5 @@
 export interface IInput {
-    value: string;
+    value?: string;
     name: string;
     type: InputType;
     readonly?: boolean;
@@ -17,8 +17,9 @@ export interface IInput {
 }
 
 export interface IInputSelect extends IInput {
-    selectedOption: number;
     options: IOption[];
+    placeholder?: string;
+    selectedOption?: IOption;
 }
 
 export interface IInputText extends IInput {
@@ -39,10 +40,8 @@ export interface IInputCheckBox extends IInput {
     flexDirection: "row" | "column";
 }
 export interface IOption {
-    id: number;
-    value: string;
+    value: string | number;
     text: string;
-    isSelected: boolean;
 }
 export interface ICheckbox {
     value: string;
