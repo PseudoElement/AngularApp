@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ICheckbox, IInputCheckBox } from "../../model";
+import { ICheckbox, IInputCheckBox, IOption } from "../../model";
 import { FormGroup } from "@angular/forms";
 
 @Component({
@@ -15,11 +15,8 @@ export class InputCheckboxComponent implements OnInit {
     ngOnInit(): void {
         this.options = this.config.checkboxes;
     }
-    setCheckOnCheckbox(id: number) {
-        const checked = this.options.find((checkbox) => checkbox.id === id)!;
-        checked.isChecked = !checked?.isChecked;
-        const checkedOptions = this._findAllCheckedOptions();
-        this.form.controls[this.config.name].setValue(checkedOptions);
+    public selectCheckbox(option: ICheckbox): void{
+
     }
     log() {
         console.log("form", this.form);

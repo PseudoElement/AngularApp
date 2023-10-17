@@ -47,7 +47,6 @@ export interface ICheckbox {
     value: string;
     label: string;
     isChecked: boolean;
-    id: number;
 }
 export interface IRadio {
     value: string;

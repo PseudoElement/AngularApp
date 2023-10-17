@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import {
+    FormArray,
     FormControl,
     FormGroup,
     ValidatorFn,
@@ -16,10 +17,14 @@ export class FormBuilderService {
     public createFormGroup(inputs: Record<string, IInput>): FormGroup {
         const form = {} as any;
         Object.values(inputs).forEach((input) => {
-            const control = this._createControl(input);
+
+            const control = input.type ==="checkbox" ? this._createFormArray(input) :  this._createControl(input);
             form[input.name] = control;
         });
         return new FormGroup(form);
+    }
+    private _createFormArray(input: IInput): FormArray{
+        return new FormArray([new FormControl(true)])
     }
     private _createControl(input: IInput): FormControl {
         const validators = this._addValidators(input);

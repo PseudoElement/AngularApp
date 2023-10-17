@@ -9,15 +9,15 @@
     <div
         *ngFor="let option of options"
         class="checkbox-wrapper"
-        (click)="setCheckOnCheckbox(option.id)"
+        (click)="selectCheckbox(option)"
     >
         <input
             [formControlName]="option.value"
-            [id]="option.id"
             [type]="config.type"
             [value]="option.value"
+            [id]="option.value"
             [checked]="option.isChecked"
         />
-        <label [for]="option.id">{{ option.label }}</label>
+        <label [for]="option.value">{{ option.label }}</label>
     </div>
 </div>

@@ -4,7 +4,7 @@
     max-width: 500px;
     margin: 10px 0;
     cursor: pointer;
-
+    position: relative;
     label {
         margin-bottom: 5px;
         font-style: italic;
@@ -14,6 +14,11 @@
             background-color: gray;
         }
         .options {
+            position: absolute;
+            top: 43px;
+            left: 0;
+            z-index: 10;
+            width: 100%;
             background-color: bisque;
             option {
                 &:hover {
