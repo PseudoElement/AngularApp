@@ -17,23 +17,23 @@ export class FormBuilderService {
     public createFormGroup(inputs: Record<string, IInput>): FormGroup {
         const form = {} as any;
         Object.values(inputs).forEach((input) => {
-            if(input.type === "checkbox"){
-                const formArray = this._createFormArray(input as IInputCheckBox);
-                form[input.name] = formArray;
-            }else{
+            if (input.type === "checkbox") {
+                const fg = this._createNestedFormGroup(input as IInputCheckBox);
+                form[input.name] = fg;
+            } else {
                 const control = this._createControl(input);
                 form[input.name] = control;
             }
         });
         return new FormGroup(form);
     }
-    private _createFormArray(input: IInputCheckBox): FormArray{
-        const formControls = [] as FormControl[];
-        input.checkboxes.forEach(checkbox => {
-                formControls.push(new FormControl(checkbox.isChecked ? checkbox.value : ''))
-        })
-        const validators = this._addValidators(input);
-        return new FormArray(formControls, validators);
+    private _createNestedFormGroup(input: IInputCheckBox): FormGroup {
+        const formGroup = input.checkboxes.reduce((acc, el, i) => {
+            const key = el.value as string;
+            acc[key] = new FormControl(el.isChecked);
+            return acc;
+        }, {} as { [k: string]: FormControl<boolean | null> });
+        return new FormGroup(formGroup);
     }
     private _createControl(input: IInput): FormControl {
         const validators = this._addValidators(input);

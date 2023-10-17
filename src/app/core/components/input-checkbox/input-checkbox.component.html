@@ -3,14 +3,14 @@
     class="input-checkbox-wrapper"
     [ngStyle]="{ display: 'flex', 'flex-direction': input.flexDirection }"
 >
-    <label *ngIf="input.label">{{input.label}}</label>
+    <label *ngIf="input.label">{{ input.label }}</label>
     <div
-        *ngFor="let option of options"
+        *ngFor="let option of options; let index = index"
         class="checkbox-wrapper"
-        [formArrayName]="input.name"
+        [formGroupName]="input.name"
     >
         <input
-            (change)="toggleCheckbox(option, $event)"
+            (change)="toggleCheckbox(option, $event, index)"
             [formControlName]="option.value"
             type="checkbox"
             [value]="option.value"
