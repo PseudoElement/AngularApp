@@ -1,4 +1,4 @@
-import { IInputSelect, IInputText } from "src/app/core/model";
+import { IInputCheckBox, IInputSelect, IInputText } from "src/app/core/model";
 
 export interface I_FIRST_FORM_INPUTS {
     NAME: IInputText;
@@ -7,4 +7,5 @@ export interface I_FIRST_FORM_INPUTS {
     SURNAME: IInputText;
     COUNTRY: IInputSelect;
     CHILDREN: IInputSelect;
+    RULES: IInputCheckBox;
 }

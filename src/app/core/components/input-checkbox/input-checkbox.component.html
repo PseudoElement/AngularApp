@@ -1,19 +1,18 @@
 <div
-    #inputBaseDir="appInputBase"
-    appInputBase
     [formGroup]="form"
-    class="input-base-checkbox"
-    [ngStyle]="{ display: 'flex', 'flex-direction': config.flexDirection }"
-    (click)="log()"
+    class="input-checkbox-wrapper"
+    [ngStyle]="{ display: 'flex', 'flex-direction': input.flexDirection }"
 >
+    <label *ngIf="input.label">{{input.label}}</label>
     <div
         *ngFor="let option of options"
         class="checkbox-wrapper"
-        (click)="selectCheckbox(option)"
+        [formArrayName]="input.name"
     >
         <input
+            (change)="toggleCheckbox(option, $event)"
             [formControlName]="option.value"
-            [type]="config.type"
+            type="checkbox"
             [value]="option.value"
             [id]="option.value"
             [checked]="option.isChecked"

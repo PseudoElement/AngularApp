@@ -1,6 +1,12 @@
-.checkbox-wrapper {
+.input-checkbox-wrapper{
     display: flex;
-    input {
-        margin-right: 15px;
+    flex-direction: column;
+    justify-content: flex-start;
+    .checkbox-wrapper {
+        display: flex;
+        input {
+            margin-right: 15px;
+        }
     }
 }
+

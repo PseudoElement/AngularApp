@@ -55,28 +55,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
         disabled: false,
         checkboxes: [
             {
-                value: "value 1",
+                value: "1",
                 label: "VALUE 1",
                 isChecked: false,
-                id: 1,
             },
             {
-                value: "value 2",
+                value: "2",
                 label: "VALUE 2",
                 isChecked: false,
-                id: 2,
             },
             {
-                value: "value 3",
+                value: "3",
                 label: "VALUE 3",
                 isChecked: false,
-                id: 3,
             },
             {
-                value: "value 4",
+                value: "4",
                 label: "VALUE 4",
                 isChecked: false,
-                id: 4,
             },
         ],
         validators: { required: true },
@@ -106,20 +102,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
                 map((val) => ({ ...val, myKey: "new-key" })),
                 tap({
                     complete() {
-                        console.log("TAP COMPLETED");
                     },
                 }),
                 catchError((e) => {
-                    console.log("ERROR", e);
                     return of(e);
                 }),
                 debounceTime(10000),
-                finalize(() => console.log("FINAL")),
+                finalize(() => 1),
                 take(5)
             )
             .subscribe((data) => {
                 this.id++;
-                console.log(data);
             });
         this.obs$.pipe(debounceTime(500)).subscribe(console.log);
     }

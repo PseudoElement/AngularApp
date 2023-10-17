@@ -25,7 +25,7 @@ export class FormPageComponent implements OnInit, OnDestroy {
         this.firstForm.valueChanges
             .pipe(takeUntil(this._isDestroyed$))
             .subscribe((v) => {
-                console.log(this.firstForm.controls);
+                console.log(v);
             });
     }
     ngOnDestroy(): void {

@@ -64,4 +64,17 @@ export const FIRST_FORM_INPUTS: I_FIRST_FORM_INPUTS = {
             { text: "Four", value: 4 },
         ],
     },
+    RULES: {
+        name: 'rules',
+        type: 'checkbox',
+        label: 'Select rules',
+        flexDirection: 'column',
+        validators: {required: true},
+        checkboxes: [
+            {isChecked: false, label: 'SystemAdmin', value: 'SystemAdmin'},
+            {isChecked: true, label: 'TechUser', value: 'TechUser'},
+            {isChecked: false, label: 'CEO', value: 'CEO'},
+            {isChecked: false, label: 'Moderator', value: 'Moderator'}
+        ]
+    }
 };

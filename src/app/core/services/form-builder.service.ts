@@ -6,7 +6,7 @@ import {
     ValidatorFn,
     Validators,
 } from "@angular/forms";
-import { IInput } from "../model";
+import { IInput, IInputCheckBox } from "../model";
 
 @Injectable({
     providedIn: "root",
@@ -17,14 +17,23 @@ export class FormBuilderService {
     public createFormGroup(inputs: Record<string, IInput>): FormGroup {
         const form = {} as any;
         Object.values(inputs).forEach((input) => {
-
-            const control = input.type ==="checkbox" ? this._createFormArray(input) :  this._createControl(input);
-            form[input.name] = control;
+            if(input.type === "checkbox"){
+                const formArray = this._createFormArray(input as IInputCheckBox);
+                form[input.name] = formArray;
+            }else{
+                const control = this._createControl(input);
+                form[input.name] = control;
+            }
         });
         return new FormGroup(form);
     }
-    private _createFormArray(input: IInput): FormArray{
-        return new FormArray([new FormControl(true)])
+    private _createFormArray(input: IInputCheckBox): FormArray{
+        const formControls = [] as FormControl[];
+        input.checkboxes.forEach(checkbox => {
+                formControls.push(new FormControl(checkbox.isChecked ? checkbox.value : ''))
+        })
+        const validators = this._addValidators(input);
+        return new FormArray(formControls, validators);
     }
     private _createControl(input: IInput): FormControl {
         const validators = this._addValidators(input);
