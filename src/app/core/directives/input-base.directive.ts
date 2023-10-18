@@ -18,8 +18,8 @@ export class InputBaseDirective implements OnInit {
     public get control(): FormControl {
         return this.form.controls[this.input.name] as FormControl;
     }
-    public get isValid(): boolean {
-        return this.control.valid;
+    public get isError(): boolean {
+        return !!this.error && this.isTouched && this.isDirty;
     }
     public get isTouched(): boolean {
         return this.control.touched;

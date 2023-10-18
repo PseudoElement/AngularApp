@@ -20,6 +20,7 @@
                 {{ option.text }}
             </option>
         </div>
+        <app-control-error *ngIf="isError" [text]="error"></app-control-error>
     </div>
-    
+
 </div>

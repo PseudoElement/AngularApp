@@ -13,9 +13,9 @@ export class InputCheckboxComponent extends InputBaseDirective implements OnInit
     constructor() {
         super()
     }
-    override ngOnInit(): void {}
+    override ngOnInit(): void { }
 
-    public get inputCheckbox(): IInputCheckBox{
+    public get inputCheckbox(): IInputCheckBox {
         return this.input as IInputCheckBox;
     }
     public get options(): ICheckbox[] {
@@ -26,7 +26,7 @@ export class InputCheckboxComponent extends InputBaseDirective implements OnInit
         return this.form.controls[this.input.name] as FormGroup;
     }
 
-    public toggleCheckbox(option: ICheckbox, e: Event, index: number) {
+    public toggleCheckbox(option: ICheckbox, e: Event) {
         option.isChecked = (e.target as HTMLInputElement).checked;
         this.formGroup.controls[option.value].patchValue(option.isChecked);
     }

@@ -2,7 +2,7 @@
     [formGroup]="form"
     class="input-checkbox-wrapper"
     [ngStyle]="{ display: 'flex', 'flex-direction': inputCheckbox.flexDirection }"
-    [class.invalid]="!isValid"
+    [class.invalid]="isError"
 >
     <label *ngIf="input.label">{{ input.label }}</label>
     <div
@@ -11,7 +11,7 @@
         [formGroupName]="input.name"
     >
         <input
-            (change)="toggleCheckbox(option, $event, index)"
+            (change)="toggleCheckbox(option, $event)"
             [formControlName]="option.value"
             type="checkbox"
             [value]="option.value"

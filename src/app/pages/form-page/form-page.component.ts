@@ -28,7 +28,8 @@ export class FormPageComponent implements OnInit, OnDestroy {
         //     return alert('Invalid data')
         // }
         // this.isSubmittedFirstForm = false
-        console.log(this.firstForm.value)
+        console.log(this.firstForm.controls)
+        this.firstForm.disable()
     }
     ngOnDestroy(): void {
         this._isDestroyed$.next(true);

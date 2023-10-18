@@ -18,7 +18,6 @@ export class FormBuilderService {
         const form = {} as any;
         Object.values(inputs).forEach((input) => {
             if (input.type === "checkbox") {
-                console.log('input')
                 const fg = this._createNestedFormGroup(input as IInputCheckBox);
                 form[input.name] = fg;
             } else {
@@ -31,14 +30,14 @@ export class FormBuilderService {
     private _createNestedFormGroup(input: IInputCheckBox): FormGroup {
         const formGroup = input.checkboxes.reduce((acc, el, i) => {
             const key = el.value as string;
-            acc[key] = new FormControl(el.isChecked);
+            acc[key] = new FormControl({ value: el.isChecked, disabled: !!el.isDisabled });
             return acc;
         }, {} as { [k: string]: FormControl<boolean | null> });
         return new FormGroup(formGroup);
     }
     private _createControl(input: IInput): FormControl {
         const validators = this._addValidators(input);
-        const control = new FormControl(input.value, validators);
+        const control = new FormControl({ value: input.value, disabled: !!input.disabled }, validators);
         return control;
     }
     private _addValidators(input: IInput): ValidatorFn | ValidatorFn[] {
