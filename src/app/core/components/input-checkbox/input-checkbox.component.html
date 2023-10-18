@@ -1,7 +1,8 @@
 <div
     [formGroup]="form"
     class="input-checkbox-wrapper"
-    [ngStyle]="{ display: 'flex', 'flex-direction': input.flexDirection }"
+    [ngStyle]="{ display: 'flex', 'flex-direction': inputCheckbox.flexDirection }"
+    [class.invalid]="!isValid"
 >
     <label *ngIf="input.label">{{ input.label }}</label>
     <div
@@ -16,6 +17,7 @@
             [value]="option.value"
             [id]="option.value"
             [checked]="option.isChecked"
+            [disabled]="!!option.isDisabled"
         />
         <label [for]="option.value">{{ option.label }}</label>
     </div>

@@ -2,13 +2,14 @@
     <label *ngIf="input.label">{{ input.label }}</label>
     <input
         [ngStyle]="{
-            border: isValid ? '1px solid black' : '2px solid red'
+            border: isSubmitted && !isValid ? '1px solid red' : '2px solid black'
         }"
         [formControlName]="input.name"
         [type]="input.type"
         [readonly]="input.readonly"
         [disabled]="!!input.disabled"
-        [placeholder]="input.placeholder"
+        [placeholder]="inputText.placeholder ?? ''"
         [value]="input.value || ''"
     />
+    <app-control-error *ngIf="isSubmitted && !isValid" [text]="error"></app-control-error>
 </div>

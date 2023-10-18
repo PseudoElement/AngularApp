@@ -25,7 +25,7 @@ export interface IInputSelect extends IInput {
 export interface IInputText extends IInput {
     placeholder?: string;
 }
-export interface IInputPassword extends IInputText {}
+export interface IInputPassword extends IInputText { }
 
 export interface IInputNumber extends IInput {
     count?: number;
@@ -47,6 +47,7 @@ export interface ICheckbox {
     value: string;
     label: string;
     isChecked: boolean;
+    isDisabled?: boolean;
 }
 export interface IRadio {
     value: string;

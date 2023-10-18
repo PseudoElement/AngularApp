@@ -12,12 +12,13 @@ import { IInput, IInputCheckBox } from "../model";
     providedIn: "root",
 })
 export class FormBuilderService {
-    constructor() {}
+    constructor() { }
 
     public createFormGroup(inputs: Record<string, IInput>): FormGroup {
         const form = {} as any;
         Object.values(inputs).forEach((input) => {
             if (input.type === "checkbox") {
+                console.log('input')
                 const fg = this._createNestedFormGroup(input as IInputCheckBox);
                 form[input.name] = fg;
             } else {

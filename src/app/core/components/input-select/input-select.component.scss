@@ -1,7 +1,9 @@
 .input-select-wrapper {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
+    position: relative;
+    width: 100%;
+    // max-width: 500px;
     margin: 10px 0;
     cursor: pointer;
     position: relative;
@@ -10,11 +12,13 @@
         font-style: italic;
     }
     .control-wrapper {
+        width: 100%;
         > option {
             background-color: gray;
         }
         .options {
             position: absolute;
+            transition: all 0.3s;
             top: 43px;
             left: 0;
             z-index: 10;
@@ -30,5 +34,6 @@
                 border-bottom: 1px solid red;
             }
         }
+
     }
 }

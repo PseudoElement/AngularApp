@@ -14,6 +14,7 @@ export const FIRST_FORM_INPUTS: I_FIRST_FORM_INPUTS = {
         type: "password",
         value: "",
         label: "Password",
+        placeholder: 'Enter Password',
         validators: {
             minLength: 5,
             maxLength: 20,
@@ -28,7 +29,7 @@ export const FIRST_FORM_INPUTS: I_FIRST_FORM_INPUTS = {
         placeholder: "Enter email...",
         disabled: true,
         label: "Email",
-        validators: { required: true },
+        validators: { required: true, email: true },
     },
     SURNAME: {
         name: "surname",
@@ -69,12 +70,38 @@ export const FIRST_FORM_INPUTS: I_FIRST_FORM_INPUTS = {
         type: 'checkbox',
         label: 'Select rules',
         flexDirection: 'column',
-        validators: {required: true},
+        validators: { required: true },
         checkboxes: [
-            {isChecked: false, label: 'SystemAdmin', value: 'SystemAdmin'},
-            {isChecked: true, label: 'TechUser', value: 'TechUser'},
-            {isChecked: false, label: 'CEO', value: 'CEO'},
-            {isChecked: false, label: 'Moderator', value: 'Moderator'}
+            { isChecked: false, label: 'SystemAdmin', value: 'SystemAdmin' },
+            { isChecked: true, label: 'TechUser', value: 'TechUser', isDisabled: true },
+            { isChecked: false, label: 'CEO', value: 'CEO' },
+            { isChecked: false, label: 'Moderator', value: 'Moderator' }
+        ]
+    },
+    CHECK2: {
+        name: 'check2',
+        type: 'checkbox',
+        label: 'Select CHECK2',
+        flexDirection: 'column',
+        validators: { required: true },
+        checkboxes: [
+            { isChecked: false, label: 'Value1', value: 'Value1' },
+            { isChecked: true, label: 'value2', value: 'value2', isDisabled: true },
+            { isChecked: false, label: 'Value3', value: 'Value3' },
+            { isChecked: false, label: 'vale4', value: 'Value4' }
+        ]
+    },
+    CHECK3: {
+        name: 'check3',
+        type: 'checkbox',
+        label: 'Select CHECK3',
+        flexDirection: 'column',
+        validators: { required: true },
+        checkboxes: [
+            { isChecked: false, label: 'ANdrei', value: 'ANdrei' },
+            { isChecked: true, label: 'max', value: 'max', isDisabled: true },
+            { isChecked: false, label: 'Pavel', value: 'Pavel' },
+            { isChecked: false, label: 'Sergei', value: 'Sergei' }
         ]
     }
 };

@@ -1,31 +1,34 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { IInputSelect, IOption } from "../../model";
+import { InputBaseDirective } from "../../directives/input-base.directive";
+import { OpenDropdownType } from "../../consts/inputs.const";
 
 @Component({
     selector: "app-input-select",
     templateUrl: "./input-select.component.html",
     styleUrls: ["./input-select.component.scss"],
 })
-export class InputSelectComponent implements OnInit {
-    @Input() form!: FormGroup;
-    @Input() input!: IInputSelect;
+export class InputSelectComponent extends InputBaseDirective implements OnInit {
+
+    @Input() openDropdownType: OpenDropdownType = 'click';
     public isOpenDropdown: boolean = false;
 
-    ngOnInit(): void {
-        if (this.input.selectedOption?.value) {
-            this.selectOption(this.input.selectedOption);
+    public get inputSelect(): IInputSelect {
+        return this.input as IInputSelect;
+    }
+    override ngOnInit(): void {
+        if (this.inputSelect.selectedOption?.value) {
+            this.selectOption(this.inputSelect.selectedOption);
         }
     }
-    public get control(): FormControl {
-        return this.form.controls[this.input.name] as FormControl;
-    }
+
 
     public selectOption(option: IOption) {
         this.control.setValue(option.value);
-        this.input.selectedOption = option;
+        this.inputSelect.selectedOption = option;
     }
-    public toggleDropdown() {
-        this.isOpenDropdown = !this.isOpenDropdown;
+    public toggleDropdown(isOpen: boolean) {
+        this.isOpenDropdown = isOpen;
     }
 }

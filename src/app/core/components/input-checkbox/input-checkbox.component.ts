@@ -1,20 +1,25 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ICheckbox, IInputCheckBox, IOption } from "../../model";
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { ICheckbox, IInputCheckBox } from "../../model";
+import { FormGroup } from "@angular/forms";
+import { InputBaseDirective } from "../../directives/input-base.directive";
 
 @Component({
     selector: "app-input-checkbox",
     templateUrl: "./input-checkbox.component.html",
     styleUrls: ["./input-checkbox.component.scss"],
 })
-export class InputCheckboxComponent implements OnInit {
-    @Input() form: FormGroup;
-    @Input() input!: IInputCheckBox;
-    constructor() {}
-    ngOnInit(): void {}
+export class InputCheckboxComponent extends InputBaseDirective implements OnInit {
 
+    constructor() {
+        super()
+    }
+    override ngOnInit(): void {}
+
+    public get inputCheckbox(): IInputCheckBox{
+        return this.input as IInputCheckBox;
+    }
     public get options(): ICheckbox[] {
-        return this.input.checkboxes;
+        return this.inputCheckbox.checkboxes;
     }
 
     public get formGroup(): FormGroup {

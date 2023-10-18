@@ -8,4 +8,6 @@ export interface I_FIRST_FORM_INPUTS {
     COUNTRY: IInputSelect;
     CHILDREN: IInputSelect;
     RULES: IInputCheckBox;
+    CHECK2: IInputCheckBox;
+    CHECK3: IInputCheckBox;
 }

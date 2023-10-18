@@ -9,6 +9,7 @@ import { InputSelectComponent } from "./components/input-select/input-select.com
 import { InputCheckboxComponent } from "./components/input-checkbox/input-checkbox.component";
 import { InputRadioComponent } from "./components/input-radio/input-radio.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ControlErrorComponent } from './components/control-error/control-error.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from "@angular/forms";
         InputSelectComponent,
         InputCheckboxComponent,
         InputRadioComponent,
+        ControlErrorComponent,
     ],
     imports: [CommonModule, ReactiveFormsModule],
     exports: [
@@ -30,6 +32,7 @@ import { ReactiveFormsModule } from "@angular/forms";
         InputSelectComponent,
         InputCheckboxComponent,
         InputRadioComponent,
+        ControlErrorComponent,
     ],
 })
-export class CoreModule {}
+export class CoreModule { }

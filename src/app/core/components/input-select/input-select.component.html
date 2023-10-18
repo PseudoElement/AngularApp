@@ -3,15 +3,17 @@
     <div
         [formControlName]="input.name"
         ngDefaultControl
-        (click)="toggleDropdown()"
+        (mouseenter)="openDropdownType === 'hover' && toggleDropdown(true)"
+        (mouseleave)="openDropdownType === 'hover' &&  toggleDropdown(false)"
+        (click)="openDropdownType === 'click' &&  toggleDropdown(!isOpenDropdown)"
         class="control-wrapper"
     >
         <option>
-            {{ input.selectedOption?.text || input.placeholder || "..." }}
+            {{ inputSelect.selectedOption?.text || inputSelect.placeholder || "..." }}
         </option>
-        <div *ngIf="isOpenDropdown" class="options">
+        <div  class="options" *ngIf="isOpenDropdown">
             <option
-                *ngFor="let option of input.options"
+                *ngFor="let option of inputSelect.options"
                 [value]="option.value"
                 (click)="selectOption(option)"
             >
@@ -19,4 +21,5 @@
             </option>
         </div>
     </div>
+    
 </div>
