@@ -1,79 +1,94 @@
+<section style="border: 2px solid red">
+    <h1>LIST OF NODES</h1>
+    <input [(ngModel)]="itemValue" type="text" />
+    <button (click)="addItem()">add item</button>
+    <ng-container *ngIf="items.length; else empty">
+        <h2
+            *ngFor="let item of items"
+            (click)="scrollTo(item.id)"
+            [attr.data-id]="item.id"
+            class="item"
+        >
+            {{ item.text }}
+        </h2>
+    </ng-container>
+    <ng-template #empty>Empty...</ng-template>
+</section>
 <div [ngStyle]="{ margin: '100px' }">
-     <h1>
-          <input
-               type="checkbox"
-               (change)="shouldFilterByLength = !shouldFilterByLength"
-          />
-          Filter by length
-          <input
-               type="checkbox"
-               (change)="shouldFilterByNumber = !shouldFilterByNumber"
-          />
-          Filter by number
-          <input
-               type="checkbox"
-               (change)="shouldFilterByCompleted = !shouldFilterByCompleted"
-          />
-          Filter by completed
-          <input
-               type="checkbox"
-               (change)="shouldSortByCreationDate = !shouldSortByCreationDate"
-          />
-          Sort by createdAt
-     </h1>
-     <div
-          *ngFor="
-               let obj of (values$ | async)!
-                    | filterByLength : 10 : shouldFilterByLength
-                    | filterByCompleted : shouldFilterByCompleted
-                    | filterByNumber : shouldFilterByNumber
-                    | sortByCreatedAt : shouldSortByCreationDate
-          "
-     >
-          <input
-               type="checkbox"
-               [checked]="obj.isCompleted"
-               (change)="onCheckboxCompletedChange($event, obj)"
-          />
-          {{ obj.id }}. {{ obj.value }} created at
-          {{ obj.createdAt | date : "dd.MM.yyyy &nbsp; HH:mm:ss.SSS" }}. Status
-          -
-          <b>{{ obj.isCompleted ? "Completed" : "Not completed" }}</b>
-     </div>
-     <div *ngFor="let couple of couples | filterByCompleted">
-          Husband - {{ couple.husband }}, wife - {{ couple.wife }}
-     </div>
+    <h1>
+        <input
+            type="checkbox"
+            (change)="shouldFilterByLength = !shouldFilterByLength"
+        />
+        Filter by length
+        <input
+            type="checkbox"
+            (change)="shouldFilterByNumber = !shouldFilterByNumber"
+        />
+        Filter by number
+        <input
+            type="checkbox"
+            (change)="shouldFilterByCompleted = !shouldFilterByCompleted"
+        />
+        Filter by completed
+        <input
+            type="checkbox"
+            (change)="shouldSortByCreationDate = !shouldSortByCreationDate"
+        />
+        Sort by createdAt
+    </h1>
+    <div
+        *ngFor="
+            let obj of (values$ | async)!
+                | filterByLength : 10 : shouldFilterByLength
+                | filterByCompleted : shouldFilterByCompleted
+                | filterByNumber : shouldFilterByNumber
+                | sortByCreatedAt : shouldSortByCreationDate
+        "
+    >
+        <input
+            type="checkbox"
+            [checked]="obj.isCompleted"
+            (change)="onCheckboxCompletedChange($event, obj)"
+        />
+        {{ obj.id }}. {{ obj.value }} created at
+        {{ obj.createdAt | date : "dd.MM.yyyy &nbsp; HH:mm:ss.SSS" }}. Status -
+        <b>{{ obj.isCompleted ? "Completed" : "Not completed" }}</b>
+    </div>
+    <div *ngFor="let couple of couples | filterByCompleted">
+        Husband - {{ couple.husband }}, wife - {{ couple.wife }}
+    </div>
 </div>
 <section>
-     <app-input #inputRef></app-input>
-     <!-- <ng-container *ngTemplateOutlet="tempRef"></ng-container> -->
-     <h1 #h1Ref>H1_YEXY</h1>
-     <ng-template #tempRef>
-          <div>TEMPLATE REF</div>
-     </ng-template>
+    <app-input #inputRef></app-input>
+    <!-- <ng-container *ngTemplateOutlet="tempRef"></ng-container> -->
+    <h1 #h1Ref>H1_YEXY</h1>
+    <ng-template #tempRef>
+        <div>TEMPLATE REF</div>
+    </ng-template>
 </section>
 <section>
-     <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-          <div *ngFor="let country of countries; let i = index">
-               <input
-                    type="checkbox"
-                    formArrayName="selectedCountries"
-                    [value]="country.value"
-                    (change)="onCheckboxChange($event)"
-               />
-               {{ country.name }}
-          </div>
-          <button type="submit">Submit</button>
-     </form>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div *ngFor="let country of countries; let i = index">
+            <input
+                type="checkbox"
+                formArrayName="selectedCountries"
+                [value]="country.value"
+                (change)="onCheckboxChange($event)"
+            />
+            {{ country.name }}
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 
-     <p>{{ form.value | json }}</p>
+    <p>{{ form.value | json }}</p>
 </section>
 <section class="modal-section">
-     <button (click)="modal1.openModal()">Open Modal 1</button>
-     <button (click)="modal2.openModal()">Open Modal 2</button>
-     <app-button></app-button>
-     <app-button></app-button>
-     <app-button></app-button>
-     <app-modal #modal1 [size]="'fullscreen'">MODAL_1_CONTENT</app-modal>
-     <app-modal #modal2>MODAL_2_CONTENT</app-modal>
+    <button (click)="modal1.openModal()">Open Modal 1</button>
+    <button (click)="modal2.openModal()">Open Modal 2</button>
+    <app-button></app-button>
+    <app-button></app-button>
+    <app-button></app-button>
+    <app-modal #modal1 [size]="'fullscreen'">MODAL_1_CONTENT</app-modal>
+    <app-modal #modal2>MODAL_2_CONTENT</app-modal>
 </section>

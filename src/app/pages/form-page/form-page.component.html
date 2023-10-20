@@ -1,19 +1,21 @@
 <div class="form-page-wrapper">
     <form [formGroup]="firstForm" (submit)="send()" class="first-form">
-        <h1 style="text-align: center;">First Service FORM</h1>
+        <h1 style="text-align: center">First Service FORM</h1>
         <section class="form-row">
             <div class="form-row-input">
                 <app-input-text
                     [form]="firstForm"
                     [input]="FIRST_FORM_INPUTS['EMAIL']"
-                    [isSubmitted]="isSubmittedFirstForm">
+                    [isSubmitted]="isSubmittedFirstForm"
+                >
                 </app-input-text>
             </div>
             <div class="form-row-input">
                 <app-input-text
                     [form]="firstForm"
                     [input]="FIRST_FORM_INPUTS['NAME']"
-                    [isSubmitted]="isSubmittedFirstForm">
+                    [isSubmitted]="isSubmittedFirstForm"
+                >
                 </app-input-text>
             </div>
         </section>
@@ -22,7 +24,8 @@
                 <app-input-text
                     [form]="firstForm"
                     [input]="FIRST_FORM_INPUTS['PASSWORD']"
-                    [isSubmitted]="isSubmittedFirstForm">
+                    [isSubmitted]="isSubmittedFirstForm"
+                >
                 </app-input-text>
             </div>
             <div class="form-row-input">
@@ -43,28 +46,31 @@
             <div class="form-row-input">
                 <app-input-select
                     [form]="firstForm"
-                    [input]="FIRST_FORM_INPUTS['CHILDREN']">
+                    [input]="FIRST_FORM_INPUTS['CHILDREN']"
+                >
                 </app-input-select>
             </div>
         </section>
         <section class="form-row">
-            <app-input-checkbox 
-                [form]="firstForm" 
-                [input]="FIRST_FORM_INPUTS['RULES']">
+            <app-input-checkbox
+                [form]="firstForm"
+                [input]="FIRST_FORM_INPUTS['RULES']"
+            >
             </app-input-checkbox>
-            <app-input-checkbox 
-                [form]="firstForm" 
-                [input]="FIRST_FORM_INPUTS['CHECK2']">
+            <app-input-checkbox
+                [form]="firstForm"
+                [input]="FIRST_FORM_INPUTS['CHECK2']"
+            >
             </app-input-checkbox>
-            <app-input-checkbox 
-                [form]="firstForm" 
-                [input]="FIRST_FORM_INPUTS['CHECK3']">
+            <app-input-checkbox
+                [form]="firstForm"
+                [input]="FIRST_FORM_INPUTS['CHECK3']"
+            >
             </app-input-checkbox>
         </section>
-
 
         <button type="submit">Send</button>
     </form>
 
-    <input type="text" disabled>
+    <input type="text" disabled />
 </div>
