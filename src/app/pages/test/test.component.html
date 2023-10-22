@@ -1,14 +1,10 @@
+<section class="first"></section>
 <section style="border: 2px solid red">
     <h1>LIST OF NODES</h1>
     <input [(ngModel)]="itemValue" type="text" />
     <button (click)="addItem()">add item</button>
     <ng-container *ngIf="items.length; else empty">
-        <h2
-            *ngFor="let item of items"
-            (click)="scrollTo(item.id)"
-            [attr.data-id]="item.id"
-            class="item"
-        >
+        <h2 *ngFor="let item of items" (click)="scrollTo(item.id)" [attr.data-id]="item.id" class="item">
             {{ item.text }}
         </h2>
     </ng-container>
@@ -16,25 +12,13 @@
 </section>
 <div [ngStyle]="{ margin: '100px' }">
     <h1>
-        <input
-            type="checkbox"
-            (change)="shouldFilterByLength = !shouldFilterByLength"
-        />
+        <input type="checkbox" (change)="shouldFilterByLength = !shouldFilterByLength" />
         Filter by length
-        <input
-            type="checkbox"
-            (change)="shouldFilterByNumber = !shouldFilterByNumber"
-        />
+        <input type="checkbox" (change)="shouldFilterByNumber = !shouldFilterByNumber" />
         Filter by number
-        <input
-            type="checkbox"
-            (change)="shouldFilterByCompleted = !shouldFilterByCompleted"
-        />
+        <input type="checkbox" (change)="shouldFilterByCompleted = !shouldFilterByCompleted" />
         Filter by completed
-        <input
-            type="checkbox"
-            (change)="shouldSortByCreationDate = !shouldSortByCreationDate"
-        />
+        <input type="checkbox" (change)="shouldSortByCreationDate = !shouldSortByCreationDate" />
         Sort by createdAt
     </h1>
     <div
@@ -46,18 +30,11 @@
                 | sortByCreatedAt : shouldSortByCreationDate
         "
     >
-        <input
-            type="checkbox"
-            [checked]="obj.isCompleted"
-            (change)="onCheckboxCompletedChange($event, obj)"
-        />
-        {{ obj.id }}. {{ obj.value }} created at
-        {{ obj.createdAt | date : "dd.MM.yyyy &nbsp; HH:mm:ss.SSS" }}. Status -
-        <b>{{ obj.isCompleted ? "Completed" : "Not completed" }}</b>
+        <input type="checkbox" [checked]="obj.isCompleted" (change)="onCheckboxCompletedChange($event, obj)" />
+        {{ obj.id }}. {{ obj.value }} created at {{ obj.createdAt | date : 'dd.MM.yyyy &nbsp; HH:mm:ss.SSS' }}. Status -
+        <b>{{ obj.isCompleted ? 'Completed' : 'Not completed' }}</b>
     </div>
-    <div *ngFor="let couple of couples | filterByCompleted">
-        Husband - {{ couple.husband }}, wife - {{ couple.wife }}
-    </div>
+    <div *ngFor="let couple of couples | filterByCompleted">Husband - {{ couple.husband }}, wife - {{ couple.wife }}</div>
 </div>
 <section>
     <app-input #inputRef></app-input>
@@ -70,12 +47,7 @@
 <section>
     <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
         <div *ngFor="let country of countries; let i = index">
-            <input
-                type="checkbox"
-                formArrayName="selectedCountries"
-                [value]="country.value"
-                (change)="onCheckboxChange($event)"
-            />
+            <input type="checkbox" formArrayName="selectedCountries" [value]="country.value" (change)="onCheckboxChange($event)" />
             {{ country.name }}
         </div>
         <button type="submit">Submit</button>

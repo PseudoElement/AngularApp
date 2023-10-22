@@ -47,38 +47,6 @@ interface IRes {
 export class ProductsComponent implements OnInit, OnDestroy {
     @Input() name: string = "NAME";
     @Input() products: Product[] = this.productService.products;
-    CHECKBOX_CONFIG: IInputCheckBox = {
-        flexDirection: "column",
-        name: "first",
-        readonly: false,
-        type: "checkbox",
-        disabled: false,
-        checkboxes: [
-            {
-                value: "1",
-                label: "VALUE 1",
-                isChecked: false,
-            },
-            {
-                value: "2",
-                label: "VALUE 2",
-                isChecked: false,
-            },
-            {
-                value: "3",
-                label: "VALUE 3",
-                isChecked: false,
-            },
-            {
-                value: "4",
-                label: "VALUE 4",
-                isChecked: false,
-            },
-        ],
-        validators: { required: true },
-        value: "value 1",
-    };
-
     title = "AngularApp";
     id = 1;
     isLoading = false;
@@ -101,8 +69,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                 filter((val) => val.id > 2),
                 map((val) => ({ ...val, myKey: "new-key" })),
                 tap({
-                    complete() {
-                    },
+                    complete() {},
                 }),
                 catchError((e) => {
                     return of(e);

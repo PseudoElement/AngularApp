@@ -1,0 +1,41 @@
+.accordeons-wrapper {
+    border: 2px solid green;
+    padding: 10px;
+}
+.add-accordeon-wrapper {
+    display: flex;
+    .right {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+}
+.accordeon {
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    justify-content: space-between;
+    font-size: 20px;
+    font-style: italic;
+    margin: 0 10px;
+    .accordeon-title-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        .title {
+            text-decoration: underline;
+        }
+        .arrow {
+            transition: all 0.3s;
+            &.open {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+    .accordeon-body {
+        display: flex;
+        justify-content: space-around;
+        padding-left: 10px;
+    }
+}

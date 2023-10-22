@@ -53,11 +53,10 @@ export class TestComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private viewContainerRef: ViewContainerRef,
         private host: ElementRef,
         private _elRef: ElementRef
     ) {
-        interval(300)
+        interval(10)
             .pipe(take(5))
             .subscribe((index) => {
                 const time = new Date();
@@ -100,7 +99,6 @@ export class TestComponent implements OnInit {
         node.scrollIntoView({ inline: "start", block: "start" });
     }
     private _getUniqueDataId(): string {
-        return crypto.randomUUID();
         return Math.random()
             .toString()
             .split("")

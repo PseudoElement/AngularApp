@@ -10,6 +10,7 @@ import { InputCheckboxComponent } from "./components/input-checkbox/input-checkb
 import { InputRadioComponent } from "./components/input-radio/input-radio.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ControlErrorComponent } from './components/control-error/control-error.component';
+import { InfiniteAccordeonComponent } from './components/infinite-accordeon/infinite-accordeon.component';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { ControlErrorComponent } from './components/control-error/control-error.
         InputCheckboxComponent,
         InputRadioComponent,
         ControlErrorComponent,
+        InfiniteAccordeonComponent,
     ],
     imports: [CommonModule, ReactiveFormsModule],
     exports: [
@@ -33,6 +35,7 @@ import { ControlErrorComponent } from './components/control-error/control-error.
         InputCheckboxComponent,
         InputRadioComponent,
         ControlErrorComponent,
+        InfiniteAccordeonComponent,
     ],
 })
 export class CoreModule { }
