@@ -16,14 +16,14 @@
                 <span class="arrow" [class.open]="accordeon.isOpen">▼</span>
             </div>
         </div>
-        <div *ngIf="accordeon.isOpen" class="accordeon">
+        <ng-container *ngIf="accordeon.isOpen">
             <ng-container *ngIf="accordeon.options?.length; else empty">
-                <div *ngFor="let nestedAccordeon of accordeon.options">
+                <ng-container *ngFor="let nestedAccordeon of accordeon.options">
                     <ng-container *ngTemplateOutlet="accordeonTemplate; context: { accordeon: nestedAccordeon }"></ng-container>
-                </div>
+                </ng-container>
             </ng-container>
             <ng-container *ngTemplateOutlet="addAccordeonTemplate; context: { accordeon: accordeon }"></ng-container>
-        </div>
+        </ng-container>
     </div>
 </ng-template>
 
@@ -38,5 +38,5 @@
 </ng-template>
 
 <ng-template #empty>
-    <span>Empty yet...</span>
+    <span class="empty">Empty yet...</span>
 </ng-template>

@@ -6,6 +6,7 @@
         display: flex;
         align-items: center;
         margin-right: 10px;
+        padding: 2px;
         &:hover {
             transition: all 0.5s;
             border: 1px solid black;
@@ -16,6 +17,13 @@
 .add-accordeon-wrapper {
     display: flex;
     align-items: center;
+    margin: 0 20px;
+    input {
+        height: 30px;
+    }
+}
+.empty {
+    margin: 0 20px;
 }
 .accordeon {
     display: flex;
@@ -24,11 +32,13 @@
     justify-content: space-between;
     font-size: 20px;
     font-style: italic;
-    margin: 0 10px;
+    margin: 0 20px;
     .accordeon-title-wrapper {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 35px;
+        width: 100%;
         cursor: pointer;
         .title {
             text-decoration: underline;
@@ -42,8 +52,8 @@
         .accordeon-title-right {
             display: flex;
             align-items: center;
-            width: 100px;
-            justify-content: space-around;
+            width: 70px;
+            justify-content: space-between;
         }
     }
     .accordeon-body {
