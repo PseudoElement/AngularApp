@@ -1,5 +1,5 @@
 <div class="accordeons-wrapper">
-    <ng-container *ngIf="accordeons.length; else empty">
+    <ng-container *ngIf="accordeons?.length; else empty">
         <div *ngFor="let accordeon of accordeons" [id]="accordeon.id">
             <ng-container *ngTemplateOutlet="accordeonTemplate; context: { accordeon: accordeon }"></ng-container>
         </div>
@@ -11,7 +11,10 @@
     <div class="accordeon" [id]="accordeon.id">
         <div (click)="toggleAccordeon(accordeon)" class="accordeon-title-wrapper">
             <span class="title">{{ accordeon.title }}</span>
-            <span class="arrow" [class.open]="accordeon.isOpen">▼</span>
+            <div class="accordeon-title-right">
+                <span (click)="deleteAccordeon($event, accordeon)" class="material-symbols-outlined action"> delete </span>
+                <span class="arrow" [class.open]="accordeon.isOpen">▼</span>
+            </div>
         </div>
         <div *ngIf="accordeon.isOpen" class="accordeon">
             <ng-container *ngIf="accordeon.options?.length; else empty">
@@ -27,7 +30,7 @@
 <ng-template #addAccordeonTemplate let-accordeon="accordeon">
     <div class="add-accordeon-wrapper">
         <input #input class="left" type="text" placeholder="Input accrodeon title..." />
-        <div (click)="accordeon ? addAccordeon(input.value, accordeon) : addAccordeon(input.value)" class="right">
+        <div (click)="accordeon ? addAccordeon(input.value, accordeon) : addAccordeon(input.value)" class="action">
             <span class="material-symbols-outlined"> add_box </span>
             <span> Add new accordeon</span>
         </div>

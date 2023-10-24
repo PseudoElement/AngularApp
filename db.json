@@ -1,0 +1,26 @@
+{
+  "accordeons": [
+    [
+      {
+        "id": "3256b215-e464-4c1c-81a6-fdbdd7d1cd58",
+        "title": "sad",
+        "isOpen": false,
+        "options": []
+      }
+    ],
+    [
+      {
+        "id": "3256b215-e464-4c1c-81a6-fdbdd7d1cd58",
+        "title": "sad",
+        "isOpen": false,
+        "options": []
+      },
+      {
+        "id": "9c907da9-07b9-44de-8755-904463daeb0d",
+        "title": "sad",
+        "isOpen": false,
+        "options": []
+      }
+    ]
+  ]
+}

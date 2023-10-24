@@ -1,6 +1,6 @@
-import { OnChanges, OnDestroy, OnInit, SimpleChanges } from "@angular/core";
-import { Component, Input } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
     BehaviorSubject,
     Observable,
@@ -23,14 +23,14 @@ import {
     take,
     takeUntil,
     tap,
-} from "rxjs";
-import { ModalService } from "src/app/services/modal.service";
-import { ProductsService } from "src/app/services/product.service";
-import { Product } from "src/app/shared/types/products";
-import { ajax } from "rxjs/ajax";
-import { FormGroup } from "@angular/forms";
-import { FormBuilderService } from "src/app/core/services/form-builder.service";
-import { IInputCheckBox } from "src/app/core/model";
+} from 'rxjs';
+import { ModalService } from 'src/app/services/modal.service';
+import { ProductsService } from 'src/app/services/product.service';
+import { Product } from 'src/app/shared/types/products';
+import { ajax } from 'rxjs/ajax';
+import { FormGroup } from '@angular/forms';
+import { FormBuilderService } from 'src/app/core/services/form-builder.service';
+import { IAccordeonOption, IInputCheckBox } from 'src/app/core/model';
 
 interface IRes {
     completed: boolean;
@@ -40,34 +40,27 @@ interface IRes {
 }
 
 @Component({
-    selector: "app-products",
-    templateUrl: "./products.component.html",
-    styleUrls: ["./products.component.scss"],
+    selector: 'app-products',
+    templateUrl: './products.component.html',
+    styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-    @Input() name: string = "NAME";
-    @Input() products: Product[] = this.productService.products;
-    title = "AngularApp";
+    @Input() name: string = 'NAME';
+    @Input() products: Product[] = this._porductSrv.products;
+    public accordeons: IAccordeonOption[] = [];
+    title = 'AngularApp';
     id = 1;
     isLoading = false;
     isDestroyed$: Subject<boolean> = new Subject();
     obs$ = new BehaviorSubject(this.name);
     form: FormGroup = new FormGroup({});
 
-    constructor(
-        public productService: ProductsService,
-        public modalService: ModalService,
-        private _formBuilderSrv: FormBuilderService
-    ) {
+    constructor(private _porductSrv: ProductsService, public modalService: ModalService, private _formBuilderSrv: FormBuilderService) {
         from([1, 2, 3, 4, 5, 6])
             .pipe(
-                mergeMap((id) =>
-                    ajax.getJSON<IRes>(
-                        `https://jsonplaceholder.typicode.com/todos/${id}`
-                    )
-                ),
+                mergeMap((id) => ajax.getJSON<IRes>(`https://jsonplaceholder.typicode.com/todos/${id}`)),
                 filter((val) => val.id > 2),
-                map((val) => ({ ...val, myKey: "new-key" })),
+                map((val) => ({ ...val, myKey: 'new-key' })),
                 tap({
                     complete() {},
                 }),
@@ -85,23 +78,21 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     changeName(): void {
-        this.name += "1";
+        this.name += '1';
     }
     openModal(): void {
         this.modalService.openModal();
     }
 
-    async ngOnInit(): Promise<any> {
+    async ngOnInit() {
         this.isLoading = true;
-        this.productService.getAll(5).subscribe((products) => {
+        this._porductSrv.getAll(5).subscribe((products) => {
             this.products = products;
             this.isLoading = false;
         });
-        this.form.valueChanges
-            .pipe(takeUntil(this.isDestroyed$))
-            .subscribe((val) => {
-                console.log("formValue", val);
-            });
+        this.form.valueChanges.pipe(takeUntil(this.isDestroyed$)).subscribe((val) => {
+            console.log('formValue', val);
+        });
     }
 
     ngOnDestroy(): void {
