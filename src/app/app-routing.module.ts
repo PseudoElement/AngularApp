@@ -5,7 +5,6 @@ import { ProductsComponent } from './pages/products/products.component';
 import { TestComponent } from './pages/test/test.component';
 import { FormPageComponent } from './pages/form-page/form-page.component';
 import { RandomBooleanResolver } from './core/resolvers/random-boolean.resolver';
-import { randomGuard } from './core/guards/random.guard';
 
 const routes: Routes = [
     { path: 'products', component: ProductsComponent },
@@ -16,7 +15,6 @@ const routes: Routes = [
     {
         path: 'lazy-1',
         loadChildren: () => import('./modules/lazy-1/lazy-1.module').then((m) => m.Lazy1Module),
-        canActivate: [randomGuard()],
     },
     {
         path: 'lazy-2',

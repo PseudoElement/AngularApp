@@ -6,10 +6,8 @@ import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@a
 })
 export class RandomBooleanResolver implements Resolve<boolean> {
     async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
-        console.log('route', route);
-        console.log('state', state);
         const random = Math.round(Math.random() * 100);
-        const res = await new Promise((res) => setTimeout(() => res(random), 3000));
+        const res = await new Promise((res) => setTimeout(() => res(random), 1000));
         return res;
     }
 }
