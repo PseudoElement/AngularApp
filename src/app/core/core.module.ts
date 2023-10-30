@@ -11,6 +11,7 @@ import { InputRadioComponent } from "./components/input-radio/input-radio.compon
 import { ReactiveFormsModule } from "@angular/forms";
 import { ControlErrorComponent } from './components/control-error/control-error.component';
 import { InfiniteAccordeonComponent } from './components/infinite-accordeon/infinite-accordeon.component';
+import { TabComponent } from './components/tab/tab.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { InfiniteAccordeonComponent } from './components/infinite-accordeon/infi
         InputRadioComponent,
         ControlErrorComponent,
         InfiniteAccordeonComponent,
+        TabComponent,
     ],
     imports: [CommonModule, ReactiveFormsModule],
     exports: [
@@ -36,6 +38,7 @@ import { InfiniteAccordeonComponent } from './components/infinite-accordeon/infi
         InputRadioComponent,
         ControlErrorComponent,
         InfiniteAccordeonComponent,
+        TabComponent,
     ],
 })
 export class CoreModule { }

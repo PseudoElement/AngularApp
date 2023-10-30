@@ -1,0 +1,25 @@
+<div class="tab-wrapper" (mouseenter)="changeType === 'hover' && activeTab && setActiveTab(activeTab)" (mouseleave)="changeType === 'hover' && hideTabs()">
+    <div class="tab-header">
+        <div
+            *ngFor="let tab of tabTitles"
+            [ngStyle]="{
+                color: tab.isActive ? 'red' : 'grey',
+                cursor: 'pointer',
+                border: '1px solid black',
+                flex: '0 1 23%',
+                'text-align': 'center',
+                padding: '10px',
+                'background-color': tab.isActive ? 'green' : 'transparent',
+                transition: 'all 0.3s'
+            }"
+            (click)="changeType === 'click' && setActiveTab(tab)"
+            (mouseenter)="changeType === 'hover' && setActiveTab(tab)"
+            (mouseleave)="changeType === 'hover' && setActiveTab(tab)"
+        >
+            {{ tab.title }}
+        </div>
+    </div>
+    <div class="tab-body">
+        <ng-content></ng-content>
+    </div>
+</div>

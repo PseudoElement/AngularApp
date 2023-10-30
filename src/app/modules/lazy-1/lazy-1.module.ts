@@ -4,9 +4,10 @@ import { RouterModule } from '@angular/router';
 import { Lazy1RoutingModule } from './lazy-1-routing.module';
 import { Lazy1ComponentComponent } from './lazy1-component/lazy1-component.component';
 import { Lazy1NestedComponent } from './lazy1-nested/lazy1-nested.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
     declarations: [Lazy1ComponentComponent, Lazy1NestedComponent],
-    imports: [CommonModule, RouterModule, Lazy1RoutingModule],
+    imports: [CommonModule, RouterModule, Lazy1RoutingModule, CoreModule],
 })
 export class Lazy1Module {}

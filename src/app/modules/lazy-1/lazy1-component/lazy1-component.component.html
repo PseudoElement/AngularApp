@@ -1,2 +1,43 @@
 <p>lazy1-component works!</p>
 <a [routerLink]="'/lazy-1/nested'" style="display: block; width: 200px">Navigate to nested</a>
+<section>
+    <app-tab [tabTitles]="tabs" [changeType]="'hover'" (activeTabValueChange)="setActiveTabValue($event)">
+        <ng-container [ngSwitch]="activeTabValue">
+            <section *ngSwitchCase="'email'">
+                <h1>EMEIL</h1>
+                <h1>EMAIL</h1>
+                <h1>MAIL</h1>
+            </section>
+            <section *ngSwitchCase="'data'">
+                <button>data</button>
+                <button>data</button>
+                <button>data</button>
+                <button>data</button>
+                <button>data</button>
+                <button>data</button>
+                <button>data</button>
+            </section>
+            <section *ngSwitchCase="'wife'">
+                <button>WIFE</button>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                xfdqweerasdX Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo aliquam recusandae est, accusantium consectetur sed reiciendis dolor
+                molestias. Qui ut harum quibusdam atque impedit aut dolor aliquam officia aspernatur sequi?
+            </section>
+            <section *ngSwitchCase="'son'">
+                <div>SON</div>
+                <div>SON</div>
+                <div>SON</div>
+                <div>SON</div>
+                <div>SON</div>
+                <div>SON</div>
+                <div>SON</div>
+                <div>SON</div>
+                <div>SON</div>
+            </section>
+        </ng-container>
+    </app-tab>
+</section>
