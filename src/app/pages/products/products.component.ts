@@ -9,6 +9,7 @@ import {
     concatMap,
     debounce,
     debounceTime,
+    delay,
     exhaustMap,
     filter,
     finalize,
@@ -17,12 +18,14 @@ import {
     from,
     interval,
     map,
+    merge,
     mergeMap,
     of,
     switchMap,
     take,
     takeUntil,
     tap,
+    timer,
 } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
 import { ProductsService } from 'src/app/services/product.service';
@@ -74,7 +77,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
             .subscribe((data) => {
                 this.id++;
             });
-        this.obs$.pipe(debounceTime(500)).subscribe(console.log);
+        // this.obs$.pipe(debounceTime(500)).subscribe(console.log);
     }
 
     changeName(): void {
@@ -85,14 +88,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     async ngOnInit() {
-        this.isLoading = true;
-        this._porductSrv.getAll(5).subscribe((products) => {
-            this.products = products;
-            this.isLoading = false;
-        });
-        this.form.valueChanges.pipe(takeUntil(this.isDestroyed$)).subscribe((val) => {
-            console.log('formValue', val);
-        });
+        // merge(timer(1000).pipe(mergeMap(() => of('of1'))), timer(2000).pipe(mergeMap(() => of('of2'))), timer(3000).pipe(mergeMap(() => of('of3'))))
+        //     .pipe()
+        //     .subscribe(console.log);
+        // this.isLoading = true;
+        // this._porductSrv.getAll(5).subscribe((products) => {
+        //     this.products = products;
+        //     this.isLoading = false;
+        // });
+        // this.form.valueChanges.pipe(takeUntil(this.isDestroyed$)).subscribe((val) => {
+        //     console.log('formValue', val);
+        // });
     }
 
     ngOnDestroy(): void {
@@ -101,5 +107,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     onNgModelChange(name: string) {
         this.obs$.next(name);
+        this.makeRequest()
+            .pipe(exhaustMap((res) => of(res)))
+            .subscribe(console.log);
+    }
+
+    private makeRequest(): Observable<any> {
+        // Здесь вы можете использовать свой код для выполнения запроса
+        return new Observable((observer) => {
+            // Пример: Имитация асинхронного запроса с использованием setTimeout
+            setTimeout(() => {
+                observer.next('Результат запроса');
+                observer.complete();
+            }, 2000);
+        });
     }
 }
