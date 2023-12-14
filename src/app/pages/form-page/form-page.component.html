@@ -3,70 +3,35 @@
         <h1 style="text-align: center">First Service FORM</h1>
         <section class="form-row">
             <div class="form-row-input">
-                <app-input-text
-                    [form]="firstForm"
-                    [input]="FIRST_FORM_INPUTS['EMAIL']"
-                    [isSubmitted]="isSubmittedFirstForm"
-                >
-                </app-input-text>
+                <app-input-text [form]="firstForm" [input]="FIRST_FORM_INPUTS['EMAIL']" [isSubmitted]="isSubmittedFirstForm"> </app-input-text>
             </div>
             <div class="form-row-input">
-                <app-input-text
-                    [form]="firstForm"
-                    [input]="FIRST_FORM_INPUTS['NAME']"
-                    [isSubmitted]="isSubmittedFirstForm"
-                >
-                </app-input-text>
+                <app-input-text [form]="firstForm" [input]="FIRST_FORM_INPUTS['NAME']" [isSubmitted]="isSubmittedFirstForm"> </app-input-text>
             </div>
         </section>
         <section class="form-row">
             <div class="form-row-input">
-                <app-input-text
-                    [form]="firstForm"
-                    [input]="FIRST_FORM_INPUTS['PASSWORD']"
-                    [isSubmitted]="isSubmittedFirstForm"
-                >
-                </app-input-text>
+                <app-input-text [form]="firstForm" [input]="FIRST_FORM_INPUTS['PASSWORD']" [isSubmitted]="isSubmittedFirstForm"> </app-input-text>
             </div>
             <div class="form-row-input">
-                <app-input-text
-                    [form]="firstForm"
-                    [input]="FIRST_FORM_INPUTS['SURNAME']"
-                    [isSubmitted]="isSubmittedFirstForm"
-                ></app-input-text>
+                <app-input-text [form]="firstForm" [input]="FIRST_FORM_INPUTS['SURNAME']" [isSubmitted]="isSubmittedFirstForm"></app-input-text>
             </div>
         </section>
         <section class="form-row">
             <div class="form-row-input">
-                <app-input-select
-                    [form]="firstForm"
-                    [input]="FIRST_FORM_INPUTS['COUNTRY']"
-                ></app-input-select>
+                <app-input-select [form]="firstForm" [input]="FIRST_FORM_INPUTS['COUNTRY']"></app-input-select>
             </div>
             <div class="form-row-input">
-                <app-input-select
-                    [form]="firstForm"
-                    [input]="FIRST_FORM_INPUTS['CHILDREN']"
-                >
-                </app-input-select>
+                <app-input-select [form]="firstForm" [input]="FIRST_FORM_INPUTS['CHILDREN']"> </app-input-select>
             </div>
         </section>
         <section class="form-row">
-            <app-input-checkbox
-                [form]="firstForm"
-                [input]="FIRST_FORM_INPUTS['RULES']"
-            >
-            </app-input-checkbox>
-            <app-input-checkbox
-                [form]="firstForm"
-                [input]="FIRST_FORM_INPUTS['CHECK2']"
-            >
-            </app-input-checkbox>
-            <app-input-checkbox
-                [form]="firstForm"
-                [input]="FIRST_FORM_INPUTS['CHECK3']"
-            >
-            </app-input-checkbox>
+            <app-input-checkbox [form]="firstForm" [input]="FIRST_FORM_INPUTS['RULES']"> </app-input-checkbox>
+            <app-input-checkbox [form]="firstForm" [input]="FIRST_FORM_INPUTS['CHECK2']"> </app-input-checkbox>
+            <app-input-checkbox [form]="firstForm" [input]="FIRST_FORM_INPUTS['CHECK3']"> </app-input-checkbox>
+        </section>
+        <section class="form-row">
+            <app-input-radio [form]="firstForm" [input]="FIRST_FORM_INPUTS['RADIO']"></app-input-radio>
         </section>
 
         <button type="submit">Send</button>

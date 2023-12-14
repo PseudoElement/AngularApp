@@ -1,1 +1,6 @@
-<p>input-radio works!</p>
+<div class="radio-input-group" [formGroup]="form">
+    <div *ngFor="let radio of options" class="radio-row__item">
+        <input type="radio" [value]="radio.value" [disabled]="true" [checked]="radio.isChecked" [id]="radio.value" [formControlName]="input.name" />
+        <label [for]="radio.value">{{ radio.label }}</label>
+    </div>
+</div>
