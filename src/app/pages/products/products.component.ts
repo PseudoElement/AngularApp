@@ -31,7 +31,7 @@ import { ModalService } from 'src/app/services/modal.service';
 import { ProductsService } from 'src/app/services/product.service';
 import { Product } from 'src/app/shared/types/products';
 import { ajax } from 'rxjs/ajax';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormBuilderService } from 'src/app/core/services/form-builder.service';
 import { IAccordeonOption, IInputCheckBox } from 'src/app/core/model';
 
@@ -56,7 +56,43 @@ export class ProductsComponent implements OnInit, OnDestroy {
     isLoading = false;
     isDestroyed$: Subject<boolean> = new Subject();
     obs$ = new BehaviorSubject(this.name);
-    form: FormGroup = new FormGroup({});
+
+    form: FormGroup = new FormGroup({
+        gender: new FormControl('', [Validators.required]),
+        age: new FormControl('', [Validators.required]),
+    });
+
+    public radioGroups = [
+        [
+            {
+                value: 'Male',
+                label: 'Man',
+                name: 'gender',
+            },
+            {
+                value: 'Female',
+                label: 'Woman',
+                name: 'gender',
+            },
+        ],
+        [
+            {
+                value: 'Child',
+                label: '0-10',
+                name: 'age',
+            },
+            {
+                value: 'teenager',
+                label: '11-18',
+                name: 'age',
+            },
+            {
+                value: 'adult',
+                label: '18+',
+                name: 'age',
+            },
+        ],
+    ];
 
     constructor(private _porductSrv: ProductsService, public modalService: ModalService, private _formBuilderSrv: FormBuilderService) {
         from([1, 2, 3, 4, 5, 6])
@@ -77,6 +113,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
             .subscribe((data) => {
                 this.id++;
             });
+        this.form.valueChanges.subscribe(console.log);
         // this.obs$.pipe(debounceTime(500)).subscribe(console.log);
     }
 
@@ -107,9 +144,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     onNgModelChange(name: string) {
         this.obs$.next(name);
-        this.makeRequest()
-            .pipe(exhaustMap((res) => of(res)))
-            .subscribe(console.log);
+        this.makeRequest().pipe(exhaustMap((res) => of(res)));
     }
 
     private makeRequest(): Observable<any> {
