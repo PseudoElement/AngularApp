@@ -7,11 +7,15 @@ import { PortalService } from 'src/app/core/services/portal.service';
 import { AlertComponent } from '../alert/alert.component';
 
 @Component({
-      selector: 'app-lazy2-component',
-      templateUrl: './lazy2-component.component.html',
-      styleUrls: ['./lazy2-component.component.scss'],,
+    selector: 'app-lazy2-component',
+    templateUrl: './lazy2-component.component.html',
+    styleUrls: ['./lazy2-component.component.scss'],
 })
 export class Lazy2ComponentComponent {
+    @ViewChild('containerDiv', { read: ViewContainerRef }) vcr: ViewContainerRef;
+
+    @ViewChild('template', { read: TemplateRef, static: true }) temp: TemplateRef<any>;
+
     public portalComponent: ComponentPortal<ModalComponent> | undefined;
 
     constructor(private portalService: PortalService) {}
@@ -47,15 +51,9 @@ export class Lazy2ComponentComponent {
             console.log(bool);
             setTimeout(() => portalOutletRef?.destroy(), 500);
         });
-    }    @ViewChild('containerDiv', { read: ViewContainerRef }) vcr: ViewContainerRef;
-
-    @ViewChild('template', { read: TemplateRef, static: true }) temp: TemplateRef<any>;
+    }
 
     private count: number = 1;
-
-    constructor() {}
-
-    ngOnInit() {}
 
     public closeAllAlerts() {
         this.vcr.clear();
