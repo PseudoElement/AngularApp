@@ -1,1 +1,6 @@
-<p>lazy2-component works!</p>
+<p>lazy2-component qweqwewqeqweqweworks!</p>
+
+<button (click)="showModal()">Show modal</button>
+<button (click)="showTemplateModal()">Show Template Modal</button>
+
+<ng-template [cdkPortalOutlet]="portalComponent" (attached)="onModalAttach($event)"></ng-template>

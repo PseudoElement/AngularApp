@@ -1,12 +1,7 @@
-<div
-     *ngIf="isOpen"
-     class="modal"
-     [class.fullscreen]="size === 'fullscreen'"
-     scroll="no"
->
-     <h1>{{ title | titlecase }}</h1>
-     <span class="material-symbols-outlined close-btn" (click)="closeModal()">
-          close
-     </span>
-     <ng-content></ng-content>
+<div class="modal">
+    <h1>{{ title | titlecase }}</h1>
+    <span class="material-symbols-outlined close-btn" (click)="chooseOption(false)"> close </span>
+    <button (click)="chooseOption(true)">Yes</button>
+    <button (click)="chooseOption(false)">No</button>
+    <ng-content></ng-content>
 </div>
