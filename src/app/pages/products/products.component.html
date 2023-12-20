@@ -13,4 +13,13 @@
         <app-create-product></app-create-product>
     </app-modal>
     <section style="border: 2px solid red"></section>
+    <section class="radio-controls" [formGroup]="form">
+        <div *ngFor="let group of radioGroups" class="radio-row">
+            <div *ngFor="let radio of group" class="radio-row__item">
+                <input type="radio" [value]="radio.value" [id]="radio.value" [formControlName]="radio.name" />
+                <label [for]="radio.value">{{ radio.label }}</label>
+            </div>
+        </div>
+        <div class="radio-row"></div>
+    </section>
 </div>

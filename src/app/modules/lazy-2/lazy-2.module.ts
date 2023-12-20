@@ -4,9 +4,10 @@ import { Lazy2RoutingModule } from './lazy-2-routing.module';
 import { Lazy2ComponentComponent } from './lazy2-component/lazy2-component.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PortalModule } from '@angular/cdk/portal';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
     imports: [CommonModule, Lazy2RoutingModule, SharedModule, PortalModule],
-    declarations: [Lazy2ComponentComponent],
+    declarations: [Lazy2ComponentComponent, AlertComponent],
 })
 export class Lazy2Module {}

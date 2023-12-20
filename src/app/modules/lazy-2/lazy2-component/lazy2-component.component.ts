@@ -1,13 +1,15 @@
 import { CdkPortalOutletAttachedRef, ComponentPortal } from '@angular/cdk/portal';
-import { Component, ComponentRef } from '@angular/core';
+import { EmbeddedViewRef, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ComponentRef, ViewContainerRef } from '@angular/core';
 import { distinctUntilChanged, of } from 'rxjs';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { PortalService } from 'src/app/core/services/portal.service';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
-    selector: 'app-lazy2-component',
-    templateUrl: './lazy2-component.component.html',
-    styleUrls: ['./lazy2-component.component.scss'],
+      selector: 'app-lazy2-component',
+      templateUrl: './lazy2-component.component.html',
+      styleUrls: ['./lazy2-component.component.scss'],,
 })
 export class Lazy2ComponentComponent {
     public portalComponent: ComponentPortal<ModalComponent> | undefined;
@@ -45,5 +47,29 @@ export class Lazy2ComponentComponent {
             console.log(bool);
             setTimeout(() => portalOutletRef?.destroy(), 500);
         });
+    }    @ViewChild('containerDiv', { read: ViewContainerRef }) vcr: ViewContainerRef;
+
+    @ViewChild('template', { read: TemplateRef, static: true }) temp: TemplateRef<any>;
+
+    private count: number = 1;
+
+    constructor() {}
+
+    ngOnInit() {}
+
+    public closeAllAlerts() {
+        this.vcr.clear();
     }
+
+    public createAlert(): void {
+        const newAlert = this.vcr.createEmbeddedView(this.temp, {
+            text: 'Text passed from parent component',
+            id: crypto.randomUUID(),
+        }) as EmbeddedViewRef<AlertComponent>;
+        newAlert.context.text = 'Changed text in alert' + this.count;
+        newAlert.context.view = newAlert;
+        this.count++;
+    }
+
+    public closeAlert(id: string): void {}
 }

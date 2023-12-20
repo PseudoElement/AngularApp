@@ -4,3 +4,12 @@
 <button (click)="showTemplateModal()">Show Template Modal</button>
 
 <ng-template [cdkPortalOutlet]="portalComponent" (attached)="onModalAttach($event)"></ng-template>
+
+<button (click)="createAlert()">Create alert</button>
+<button (click)="closeAllAlerts()">Close alerts</button>
+
+<div class="container-div" #containerDiv></div>
+
+<ng-template #template let-text="text" let-id="id" let-view="view">
+    <app-alert [text]="text" [id]="id" [view]="view" (onClose)="closeAlert($event)"></app-alert>
+</ng-template>

@@ -25,7 +25,7 @@ export interface IInputSelect extends IInput {
 export interface IInputText extends IInput {
     placeholder?: string;
 }
-export interface IInputPassword extends IInputText { }
+export interface IInputPassword extends IInputText {}
 
 export interface IInputNumber extends IInput {
     count?: number;
@@ -33,11 +33,11 @@ export interface IInputNumber extends IInput {
 }
 
 export interface IInputRadio extends IInput {
-    radioBtns: boolean;
+    radioBtns: IRadio[];
 }
 export interface IInputCheckBox extends IInput {
     checkboxes: ICheckbox[];
-    flexDirection: "row" | "column";
+    flexDirection: 'row' | 'column';
 }
 export interface IOption {
     value: string | number;
@@ -53,12 +53,6 @@ export interface IRadio {
     value: string;
     label: string;
     isChecked: boolean;
+    isDisabled?: boolean;
 }
-export type InputType =
-    | "text"
-    | "number"
-    | "password"
-    | "select"
-    | "radio"
-    | "checkbox"
-    | "date";
+export type InputType = 'text' | 'number' | 'password' | 'select' | 'radio' | 'checkbox' | 'date';

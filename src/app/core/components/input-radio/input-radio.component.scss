@@ -1,0 +1,12 @@
+.radio-row {
+    display: flex;
+    &__item {
+        display: flex;
+        align-items: center;
+        margin: 10px;
+        white-space: nowrap;
+        input {
+            margin-right: 5px;
+        }
+    }
+}

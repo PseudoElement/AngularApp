@@ -1,4 +1,4 @@
-import { IInputCheckBox, IInputSelect, IInputText } from "src/app/core/model";
+import { IInputCheckBox, IInputRadio, IInputSelect, IInputText, IRadio } from 'src/app/core/model';
 
 export interface I_FIRST_FORM_INPUTS {
     NAME: IInputText;
@@ -10,4 +10,5 @@ export interface I_FIRST_FORM_INPUTS {
     RULES: IInputCheckBox;
     CHECK2: IInputCheckBox;
     CHECK3: IInputCheckBox;
+    RADIO: IInputRadio;
 }
