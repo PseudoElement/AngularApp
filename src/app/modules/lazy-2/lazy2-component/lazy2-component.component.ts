@@ -1,7 +1,7 @@
 import { CdkPortalOutletAttachedRef, ComponentPortal } from '@angular/cdk/portal';
 import { EmbeddedViewRef, TemplateRef, ViewChild } from '@angular/core';
 import { Component, ComponentRef, ViewContainerRef } from '@angular/core';
-import { distinctUntilChanged, of } from 'rxjs';
+import { delay, distinctUntilChanged, of, timeout } from 'rxjs';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { PortalService } from 'src/app/core/services/portal.service';
 import { AlertComponent } from '../alert/alert.component';
@@ -33,6 +33,8 @@ export class Lazy2ComponentComponent {
             })
         );
         recordHighs$.subscribe();
+
+        of(false).pipe(delay(5000)).subscribe();
     }
 
     public async showModal() {
