@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { concat, interval, timeout, timer } from 'rxjs';
+import { Observable, concat, interval, timeout, timer } from 'rxjs';
 import { ITab } from 'src/app/core/model';
 import { LAZY_1_TABS } from '../consts';
+import { Singleton } from 'src/app/core/classes/singleton-class';
+import { SingleInherited } from 'src/app/core/classes/singleton2-class';
 
 @Component({
     selector: 'app-lazy1-component',
@@ -12,6 +14,15 @@ import { LAZY_1_TABS } from '../consts';
 export class Lazy1ComponentComponent implements OnInit {
     public tabs: ITab[] = LAZY_1_TABS;
     public activeTabValue: string | null;
+
+    private singletonSrv = new Singleton();
+
+    private single2Srv = new SingleInherited();
+
+    public length$: Observable<number> = this.single2Srv.length$;
+
+    public count$: Observable<number> = this.singletonSrv.count$;
+
     constructor(private _route: ActivatedRoute) {}
 
     ngOnInit(): void {
@@ -30,5 +41,17 @@ export class Lazy1ComponentComponent implements OnInit {
     }
     public setActiveTabValue(value: string | null) {
         this.activeTabValue = value;
+    }
+
+    public increment(): void {
+        this.singletonSrv.increment();
+    }
+
+    public decrement(): void {
+        this.singletonSrv.decrement();
+    }
+
+    public push(): void {
+        this.single2Srv.addItem(Date.now());
     }
 }

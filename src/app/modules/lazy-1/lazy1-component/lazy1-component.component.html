@@ -4,7 +4,7 @@
     <app-tab [tabTitles]="tabs" [changeType]="'hover'" (activeTabValueChange)="setActiveTabValue($event)">
         <ng-container [ngSwitch]="activeTabValue">
             <section *ngSwitchCase="'email'">
-                <h1>EMEIL</h1>
+                <h1>COUNT</h1>
                 <h1>EMAIL</h1>
                 <h1>MAIL</h1>
             </section>
@@ -13,9 +13,11 @@
                 <button>data</button>
                 <button>data</button>
                 <button>data</button>
-                <button>data</button>
-                <button>data</button>
-                <button>data</button>
+                <button (click)="push()">PUSH DATE</button>
+                <button (click)="increment()">INCREASE</button>
+                <button (click)="decrement()">DECREASE</button>
+                <div>COUNT: {{ count$ | async }}</div>
+                <p>LENGTH: {{ length$ | async }}</p>
             </section>
             <section *ngSwitchCase="'wife'">
                 <button>WIFE</button>

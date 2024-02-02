@@ -1,10 +1,12 @@
 import { CdkPortalOutletAttachedRef, ComponentPortal } from '@angular/cdk/portal';
 import { EmbeddedViewRef, TemplateRef, ViewChild } from '@angular/core';
 import { Component, ComponentRef, ViewContainerRef } from '@angular/core';
-import { delay, distinctUntilChanged, of, timeout } from 'rxjs';
+import { Observable, delay, distinctUntilChanged, of, timeout } from 'rxjs';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { PortalService } from 'src/app/core/services/portal.service';
 import { AlertComponent } from '../alert/alert.component';
+import { Singleton } from 'src/app/core/classes/singleton-class';
+import { SingleInherited } from 'src/app/core/classes/singleton2-class';
 
 @Component({
     selector: 'app-lazy2-component',
@@ -17,6 +19,14 @@ export class Lazy2ComponentComponent {
     @ViewChild('template', { read: TemplateRef, static: true }) temp: TemplateRef<any>;
 
     public portalComponent: ComponentPortal<ModalComponent> | undefined;
+
+    public singletonSrv = new Singleton();
+
+    private single2Srv = new SingleInherited();
+
+    public length$: Observable<number> = this.single2Srv.length$;
+
+    public count$ = this.singletonSrv.count$;
 
     constructor(private portalService: PortalService) {}
 
