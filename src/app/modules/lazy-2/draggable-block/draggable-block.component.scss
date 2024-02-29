@@ -1,0 +1,11 @@
+.draggable-block {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    background: brown;
+    cursor: grab;
+    &:active {
+        cursor: grabbing;
+    }
+}
