@@ -1,7 +1,7 @@
 import { CdkPortalOutletAttachedRef, ComponentPortal } from '@angular/cdk/portal';
 import { EmbeddedViewRef, TemplateRef, ViewChild } from '@angular/core';
 import { Component, ComponentRef, ViewContainerRef } from '@angular/core';
-import { Observable, delay, distinctUntilChanged, of, timeout } from 'rxjs';
+import { Observable, combineLatest, delay, distinctUntilChanged, filter, forkJoin, fromEvent, map, merge, of, tap, timeout } from 'rxjs';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { PortalService } from 'src/app/core/services/portal.service';
 import { AlertComponent } from '../alert/alert.component';
@@ -28,7 +28,9 @@ export class Lazy2ComponentComponent {
 
     public count$ = this.singletonSrv.count$;
 
-    constructor(private portalService: PortalService) {}
+    constructor(private portalService: PortalService) {
+        this.listenPasteAction();
+    }
 
     async ngOnInit() {
         const temps$ = of(30, 31, 20, 34, 33, 29, 20, 21, 22, 24, 35, 20);
@@ -82,4 +84,15 @@ export class Lazy2ComponentComponent {
     }
 
     public closeAlert(id: string): void {}
+
+    private listenPasteAction(): void {
+        const ctrlV$ = fromEvent<KeyboardEvent>(document, 'keydown').pipe(
+            filter((e) => e.ctrlKey && e.code === 'KeyV'),
+            tap((e) => e.preventDefault())
+        );
+
+        ctrlV$.pipe(map((e) => e)).subscribe((v) => {
+            console.log(v);
+        });
+    }
 }
