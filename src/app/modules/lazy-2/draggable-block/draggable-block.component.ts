@@ -1,5 +1,21 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { debounceTime, fromEvent, interval, switchMap, takeUntil, takeWhile, tap, throttle } from 'rxjs';
+import {
+    BehaviorSubject,
+    Subject,
+    debounceTime,
+    endWith,
+    finalize,
+    fromEvent,
+    interval,
+    map,
+    startWith,
+    switchMap,
+    take,
+    takeUntil,
+    takeWhile,
+    tap,
+    throttle,
+} from 'rxjs';
 
 @Component({
     selector: 'app-draggable-block',
@@ -20,7 +36,31 @@ export class DraggableBlockComponent {
         tap((e) => this.move(e.movementX, e.movementY))
     );
 
+    private _count: number = 0;
+
+    private _randomNum: number = 0;
+
+    private _startCounting$ = new Subject<void>();
+
+    public shownAmount$ = this._startCounting$.pipe(
+        switchMap(() =>
+            interval(1000).pipe(
+                map((val) => this._count - val - 1),
+                take(this._randomNum),
+                startWith(this._count),
+                endWith(0)
+            )
+        ),
+        startWith(this._count)
+    );
+
     constructor(private hostRef: ElementRef) {}
+
+    public startTimer(): void {
+        this._randomNum = 5 + Math.ceil(Math.random() * 10);
+        this._count = this._randomNum;
+        this._startCounting$.next();
+    }
 
     private move(dX: number, dY: number): void {
         const el = this.elRef.nativeElement as HTMLElement;

@@ -1,4 +1,11 @@
 .draggable-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+
     position: relative;
     width: 200px;
     height: 200px;
