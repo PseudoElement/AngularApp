@@ -7,6 +7,7 @@ import { PortalService } from 'src/app/core/services/portal.service';
 import { AlertComponent } from '../alert/alert.component';
 import { Singleton } from 'src/app/core/classes/singleton-class';
 import { SingleInherited } from 'src/app/core/classes/singleton2-class';
+import { DynamicComponentService } from 'src/app/core/services/dynamic-component.service';
 
 @Component({
     selector: 'app-lazy2-component',
@@ -28,8 +29,12 @@ export class Lazy2ComponentComponent {
 
     public count$ = this.singletonSrv.count$;
 
-    constructor(private portalService: PortalService) {
+    constructor(private portalService: PortalService, private dynamicComponentSrv: DynamicComponentService) {
         this.listenPasteAction();
+    }
+
+    public openModalFromDynamicService(): void {
+        this.dynamicComponentSrv.appendModalToBody('T-Bank');
     }
 
     async ngOnInit() {

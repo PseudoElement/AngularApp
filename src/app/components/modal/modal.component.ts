@@ -1,5 +1,5 @@
 import { animate, animation, style, transition, trigger, useAnimation } from '@angular/animations';
-import { AfterViewInit, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Inject, Input, Output, ViewContainerRef } from '@angular/core';
 import { PortalService } from 'src/app/core/services/portal.service';
 
 @Component({
@@ -10,14 +10,19 @@ import { PortalService } from 'src/app/core/services/portal.service';
 export class ModalComponent implements AfterViewInit {
     @Input() size: 'fullscreen' | 'block' = 'block';
     @Input() title: string;
+    @Input() close: () => void;
 
     @Output() isConfirmed: EventEmitter<boolean> = new EventEmitter();
 
     public isVisible: boolean;
 
-    constructor(private portalSrv: PortalService) {
+    constructor(private portalSrv: PortalService, private vcr: ViewContainerRef) {
         this.isVisible = true;
     }
+
+    // public close(): void {
+    //     this.vcr.detach()
+    // }
 
     ngAfterViewInit(): void {}
 

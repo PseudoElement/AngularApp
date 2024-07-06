@@ -1,6 +1,6 @@
 <div class="modal">
     <h1>{{ title | titlecase }}</h1>
-    <span class="material-symbols-outlined close-btn" (click)="chooseOption(false)"> close </span>
+    <span class="material-symbols-outlined close-btn" (click)="close()"> close </span>
     <button (click)="chooseOption(true)">Yes</button>
     <button (click)="chooseOption(false)">No</button>
     <ng-content></ng-content>
