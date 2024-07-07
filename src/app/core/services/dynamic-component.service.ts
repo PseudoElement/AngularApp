@@ -3,7 +3,7 @@ import { firstValueFrom } from 'rxjs';
 import { AbstractConfirmComponent } from '../types/dynamic-comp-srv-types';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'platform',
 })
 export class DynamicComponentService {
     constructor(private appRef: ApplicationRef) {}
