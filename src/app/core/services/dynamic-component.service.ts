@@ -1,32 +1,65 @@
-import { ApplicationRef, ComponentRef, Injectable, Injector, createComponent } from '@angular/core';
-import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { ApplicationRef, Injectable, Type, ViewContainerRef, createComponent } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { AbstractConfirmComponent } from '../types/dynamic-comp-srv-types';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DynamicComponentService {
-    constructor(private injector: Injector, private appRef: ApplicationRef) {}
+    constructor(private appRef: ApplicationRef) {}
 
-    public appendModalToBody(bankName: string): ComponentRef<ModalComponent> {
-        const componentRef = createComponent(ModalComponent, {
+    public async openConfirmModal<T extends AbstractConfirmComponent>(
+        component: Type<T>,
+        inputs: Partial<T>,
+        onOpen?: (...args: unknown[]) => any,
+        onClose?: (...args: unknown[]) => any
+    ): Promise<boolean> {
+        const componentRef = createComponent(component, {
             environmentInjector: this.appRef.injector,
         });
 
-        componentRef.instance.title = bankName;
-        componentRef.instance.size = 'fullscreen';
-        // componentRef.instance.close = this.removeComponent.bind(this);
-        componentRef.instance.close = this.removeComponent.bind(this, componentRef);
+        for (const inputName in componentRef.instance) {
+            if (inputs[inputName]) {
+                componentRef.instance[inputName] = inputs[inputName]!;
+            }
+        }
 
+        componentRef.instance.close = () => {
+            onClose?.();
+            this.appRef.detachView(componentRef.hostView);
+            componentRef.destroy();
+        };
+
+        onOpen?.();
         this.appRef.attachView(componentRef.hostView);
         const domElem = (componentRef.hostView as any).rootNodes[0] as HTMLElement;
         document.body.appendChild(domElem);
 
-        return componentRef;
+        return firstValueFrom(componentRef.instance.isConfirmed);
     }
 
-    private removeComponent(componentRef: ComponentRef<any>) {
-        this.appRef.detachView(componentRef.hostView);
-        componentRef.destroy();
-        componentRef.onDestroy(() => alert('Modal is destroyed!'));
+    public async renderModalInVCRef<T extends AbstractConfirmComponent>(
+        vcr: ViewContainerRef,
+        component: Type<T>,
+        inputs: Partial<T>,
+        onOpen?: (...args: unknown[]) => any,
+        onClose?: (...args: unknown[]) => any
+    ): Promise<boolean> {
+        const componentRef = vcr.createComponent(component);
+        for (const inputName in componentRef.instance) {
+            if (inputs[inputName]) {
+                componentRef.instance[inputName] = inputs[inputName]!;
+            }
+        }
+        componentRef.instance.close = () => {
+            onClose?.();
+            this.appRef.detachView(componentRef.hostView);
+            componentRef.destroy();
+        };
+
+        onOpen?.();
+        vcr.insert(componentRef.hostView);
+
+        return firstValueFrom(componentRef.instance.isConfirmed);
     }
 }

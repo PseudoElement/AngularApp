@@ -9,7 +9,7 @@ import { PortalService } from 'src/app/core/services/portal.service';
 })
 export class ModalComponent implements AfterViewInit {
     @Input() size: 'fullscreen' | 'block' = 'block';
-    @Input() title: string;
+    @Input() title: string = 'HUI PIZDA';
     @Input() close: () => void;
 
     @Output() isConfirmed: EventEmitter<boolean> = new EventEmitter();
@@ -20,24 +20,19 @@ export class ModalComponent implements AfterViewInit {
         this.isVisible = true;
     }
 
-    // public close(): void {
-    //     this.vcr.detach()
-    // }
-
     ngAfterViewInit(): void {}
 
     ngOnDestroy() {
-        console.log('destroy');
         this.isVisible = false;
     }
 
     public chooseOption(isConfirmed: boolean) {
         this.isConfirmed.emit(isConfirmed);
-
         if (isConfirmed) {
             this.portalSrv.confirm();
         } else {
             this.portalSrv.cancel();
         }
+        this.close();
     }
 }

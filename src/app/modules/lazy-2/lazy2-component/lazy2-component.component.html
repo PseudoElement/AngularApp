@@ -11,7 +11,8 @@
 
 <div class="container-div" #containerDiv></div>
 
-<h1 (click)="openModalFromDynamicService()" style="width: 100px; height: 100px">Open modal dynamically with createComponent</h1>
+<button (click)="openModalFromDynamicService()" style="padding: 5px; margin: 10px 0">Open modal with createComponent in service</button>
+<button (click)="openModalInVCRef()" style="padding: 5px; margin: 10px 0">Open modal ViewContainerRef in service</button>
 
 <app-draggable-block></app-draggable-block>
 

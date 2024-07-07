@@ -33,8 +33,35 @@ export class Lazy2ComponentComponent {
         this.listenPasteAction();
     }
 
-    public openModalFromDynamicService(): void {
-        this.dynamicComponentSrv.appendModalToBody('T-Bank');
+    public async openModalInVCRef(): Promise<void> {
+        const onOpen = () => console.log('Modal opened!');
+        const onClose = () => console.log('Modal closed!');
+        const isConfirm = await this.dynamicComponentSrv.renderModalInVCRef<ModalComponent>(
+            this.vcr,
+            ModalComponent,
+            {
+                size: 'fullscreen',
+                title: 'Custom title from lazy2',
+            },
+            onOpen,
+            onClose
+        );
+        console.log('isConfirm', isConfirm);
+    }
+
+    public async openModalFromDynamicService(): Promise<void> {
+        const onOpen = () => console.log('Modal opened!');
+        const onClose = () => console.log('Modal closed!');
+        const isConfirm = await this.dynamicComponentSrv.openConfirmModal<ModalComponent>(
+            ModalComponent,
+            {
+                size: 'fullscreen',
+                title: 'Custom title from lazy2',
+            },
+            onOpen,
+            onClose
+        );
+        console.log('isConfirm', isConfirm);
     }
 
     async ngOnInit() {
