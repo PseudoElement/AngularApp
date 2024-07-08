@@ -1,0 +1,8 @@
+<div class="modal">
+    <h1>{{ title }}</h1>
+    <span class="material-symbols-outlined close-btn" (click)="chooseOption(false)"> close </span>
+    <button (click)="chooseOption(true)">Yes</button>
+    <button (click)="chooseOption(false)">No</button>
+    <ng-content></ng-content>
+    <ng-template #hui></ng-template>
+</div>

@@ -21,7 +21,12 @@
         "lib": ["ES2022", "dom"],
         "strictPropertyInitialization": false, // <----- false выключает требование типизации для @Input
         "paths": {
-            "crypto": ["./node_modules/crypto-js"]
+            "crypto": [
+              "./node_modules/crypto-js"
+            ],
+            "dynamic-rendering": [
+              "dist/dynamic-rendering"
+            ]
         }
     },
     "angularCompilerOptions": {
