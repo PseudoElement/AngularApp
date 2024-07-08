@@ -1,11 +1,21 @@
-import { ApplicationRef, Injectable, Type, ViewContainerRef, createComponent } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { ApplicationRef, Component, ComponentRef, Injectable, Type, ViewContainerRef, createComponent } from '@angular/core';
+import { BehaviorSubject, Subject, firstValueFrom } from 'rxjs';
 import { AbstractConfirmComponent } from '../types/dynamic-comp-srv-types';
 
 @Injectable({
     providedIn: 'platform',
 })
 export class SintolLibDynamicComponentService {
+    private _activeComponents: Map<string, ComponentRef<any>> = new Map([]);
+
+    public get activeComponents(): Map<string, ComponentRef<any>> {
+        return this._activeComponents;
+    }
+
+    public get activeComponentsKeys(): IterableIterator<string> {
+        return this._activeComponents.keys();
+    }
+
     constructor(private appRef: ApplicationRef) {}
 
     public async openConfirmModal<T extends AbstractConfirmComponent>(
@@ -34,6 +44,8 @@ export class SintolLibDynamicComponentService {
         this.appRef.attachView(componentRef.hostView);
         const domElem = (componentRef.hostView as any).rootNodes[0] as HTMLElement;
         document.body.appendChild(domElem);
+        const randomKey = crypto.randomUUID();
+        this.activeComponents.set(randomKey, componentRef);
 
         return firstValueFrom(componentRef.instance.isConfirmed);
     }
@@ -59,7 +71,24 @@ export class SintolLibDynamicComponentService {
 
         onOpen?.();
         vcr.insert(componentRef.hostView);
+        const randomKey = crypto.randomUUID();
+        this.activeComponents.set(randomKey, componentRef);
 
         return firstValueFrom(componentRef.instance.isConfirmed);
+    }
+
+    public closeAll(): void {
+        this.activeComponents.forEach((modal) => {
+            this.appRef.detachView(modal.hostView);
+            modal.destroy();
+        });
+    }
+
+    public closeComponentByKey(key: string): void {
+        const componentRef = this._activeComponents.get(key);
+        if (!componentRef) return;
+
+        componentRef.destroy();
+        this.appRef.detachView(componentRef.hostView);
     }
 }
