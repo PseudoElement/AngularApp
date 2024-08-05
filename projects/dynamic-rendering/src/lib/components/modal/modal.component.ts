@@ -10,9 +10,6 @@ export class SintolLibModalComponent implements AfterViewInit {
     @Input() title: string = 'SOME TITLE';
     @Output() isConfirmed: EventEmitter<boolean> = new EventEmitter();
 
-    public close: () => void
-
-
     public isVisible: boolean;
 
     constructor() {
@@ -27,6 +24,5 @@ export class SintolLibModalComponent implements AfterViewInit {
 
     public chooseOption(isConfirmed: boolean) {
         this.isConfirmed.emit(isConfirmed);
-        this.close();
     }
 }
