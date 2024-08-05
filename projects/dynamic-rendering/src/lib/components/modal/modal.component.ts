@@ -7,10 +7,11 @@ import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/
 })
 export class SintolLibModalComponent implements AfterViewInit {
     @Input() size: 'fullscreen' | 'block' = 'block';
-    @Input() title: string = 'HUI PIZDA';
-    @Input() close: () => void;
-
+    @Input() title: string = 'SOME TITLE';
     @Output() isConfirmed: EventEmitter<boolean> = new EventEmitter();
+
+    public close: () => void
+
 
     public isVisible: boolean;
 

@@ -9,10 +9,12 @@ import { PortalService } from 'src/app/core/services/portal.service';
 })
 export class ModalComponent implements AfterViewInit {
     @Input() size: 'fullscreen' | 'block' = 'block';
-    @Input() title: string = 'HUI PIZDA';
-    @Input() close: () => void;
+
+    @Input() title: string = 'Default Title';
 
     @Output() isConfirmed: EventEmitter<boolean> = new EventEmitter();
+
+    public close: () => void = () => {};
 
     public isVisible: boolean;
 

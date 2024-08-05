@@ -3,7 +3,7 @@ import { BehaviorSubject, Subject, firstValueFrom } from 'rxjs';
 import { AbstractConfirmComponent } from '../types/dynamic-comp-srv-types';
 
 @Injectable({
-    providedIn: 'platform',
+    providedIn: 'root',
 })
 export class SintolLibDynamicComponentService {
     private _activeComponents: Map<string, ComponentRef<any>> = new Map([]);
@@ -20,7 +20,7 @@ export class SintolLibDynamicComponentService {
 
     public async openConfirmModal<T extends AbstractConfirmComponent>(
         component: Type<T>,
-        inputs: Partial<T>,
+        inputs: Partial<Omit<T, 'close' | 'isConfirmed'>>,
         onOpen?: (...args: unknown[]) => any,
         onClose?: (...args: unknown[]) => any
     ): Promise<boolean> {
@@ -29,7 +29,9 @@ export class SintolLibDynamicComponentService {
         });
 
         for (const inputName in componentRef.instance) {
+            // @ts-ignore
             if (inputs[inputName]) {
+                // @ts-ignore
                 componentRef.instance[inputName] = inputs[inputName]!;
             }
         }
@@ -53,13 +55,15 @@ export class SintolLibDynamicComponentService {
     public async renderModalInVCRef<T extends AbstractConfirmComponent>(
         vcr: ViewContainerRef,
         component: Type<T>,
-        inputs: Partial<T>,
+        inputs: Partial<Omit<T, 'close' | 'isConfirmed'>>,
         onOpen?: (...args: unknown[]) => any,
         onClose?: (...args: unknown[]) => any
     ): Promise<boolean> {
         const componentRef = vcr.createComponent(component);
         for (const inputName in componentRef.instance) {
+            // @ts-ignore
             if (inputs[inputName]) {
+                // @ts-ignore
                 componentRef.instance[inputName] = inputs[inputName]!;
             }
         }
