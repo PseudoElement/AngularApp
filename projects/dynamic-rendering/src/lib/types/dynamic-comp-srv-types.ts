@@ -5,3 +5,9 @@ export abstract class AbstractConfirmComponent {
 
     public abstract close: () => void;
 }
+
+export interface  AbstractModalComp<T> {
+    returnedValue: EventEmitter<T>
+
+    close: () => void
+}

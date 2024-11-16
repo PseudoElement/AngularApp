@@ -1,5 +1,6 @@
 import { animate, animation, style, transition, trigger, useAnimation } from '@angular/animations';
 import { AfterViewInit, Component, EventEmitter, Inject, Input, Output, ViewContainerRef } from '@angular/core';
+import { AbstractModalComp } from 'projects/dynamic-rendering/src/lib/types/dynamic-comp-srv-types';
 import { PortalService } from 'src/app/core/services/portal.service';
 
 @Component({
@@ -7,12 +8,12 @@ import { PortalService } from 'src/app/core/services/portal.service';
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent implements AfterViewInit {
+export class ModalComponent implements AfterViewInit, AbstractModalComp<boolean> {
     @Input() size: 'fullscreen' | 'block' = 'block';
 
     @Input() title: string = 'Default Title';
 
-    @Output() isConfirmed: EventEmitter<boolean> = new EventEmitter();
+    @Output() returnedValue: EventEmitter<boolean> = new EventEmitter();
 
     public close: () => void = () => {};
 
@@ -29,7 +30,8 @@ export class ModalComponent implements AfterViewInit {
     }
 
     public chooseOption(isConfirmed: boolean) {
-        this.isConfirmed.emit(isConfirmed);
+        //@ts-ignore
+        this.returnedValue.emit([{key: 'key', value: 'KeyW'}]);
         if (isConfirmed) {
             this.portalSrv.confirm();
         } else {

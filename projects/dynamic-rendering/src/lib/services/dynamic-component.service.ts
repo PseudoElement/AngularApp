@@ -1,6 +1,6 @@
 import { ApplicationRef, Component, ComponentRef, Injectable, Type, ViewContainerRef, createComponent } from '@angular/core';
 import { BehaviorSubject, Subject, firstValueFrom } from 'rxjs';
-import { AbstractConfirmComponent } from '../types/dynamic-comp-srv-types';
+import { AbstractConfirmComponent, AbstractModalComp } from '../types/dynamic-comp-srv-types';
 
 @Injectable({
     providedIn: 'root',
@@ -18,12 +18,12 @@ export class SintolLibDynamicComponentService {
 
     constructor(private appRef: ApplicationRef) {}
 
-    public async openConfirmModal<T extends AbstractConfirmComponent>(
+    public async openConfirmModal<T extends AbstractModalComp<ReturnedValue>, ReturnedValue>(
         component: Type<T>,
         inputs: Partial<Omit<T, 'close' | 'isConfirmed'>>,
         onOpen?: (...args: unknown[]) => any,
         onClose?: (...args: unknown[]) => any
-    ): Promise<boolean> {
+    ): Promise<ReturnedValue> {
         const componentRef = createComponent(component, {
             environmentInjector: this.appRef.injector,
         });
@@ -49,16 +49,16 @@ export class SintolLibDynamicComponentService {
         const randomKey = crypto.randomUUID();
         this.activeComponents.set(randomKey, componentRef);
 
-        return firstValueFrom(componentRef.instance.isConfirmed);
+        return firstValueFrom(componentRef.instance.returnedValue);
     }
 
-    public async renderModalInVCRef<T extends AbstractConfirmComponent>(
+    public async renderModalInVCRef<T extends AbstractModalComp<ReturnedValue>, ReturnedValue>(
         vcr: ViewContainerRef,
         component: Type<T>,
         inputs: Partial<Omit<T, 'close' | 'isConfirmed'>>,
         onOpen?: (...args: unknown[]) => any,
         onClose?: (...args: unknown[]) => any
-    ): Promise<boolean> {
+    ): Promise<ReturnedValue> {
         const componentRef = vcr.createComponent(component);
         for (const inputName in componentRef.instance) {
             // @ts-ignore
@@ -78,7 +78,7 @@ export class SintolLibDynamicComponentService {
         const randomKey = crypto.randomUUID();
         this.activeComponents.set(randomKey, componentRef);
 
-        return firstValueFrom(componentRef.instance.isConfirmed);
+        return firstValueFrom(componentRef.instance.returnedValue);
     }
 
     public closeAll(): void {
