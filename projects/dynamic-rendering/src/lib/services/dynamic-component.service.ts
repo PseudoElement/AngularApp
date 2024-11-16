@@ -19,7 +19,7 @@ export class SintolLibDynamicComponentService {
     constructor(private appRef: ApplicationRef) {}
 
     public async openConfirmModal<T extends AbstractModalComp<ReturnedValue>, ReturnedValue>(
-        component: Type<T>,
+        component: Type<AbstractModalComp<ReturnedValue>>,
         inputs: Partial<Omit<T, 'close' | 'isConfirmed'>>,
         onOpen?: (...args: unknown[]) => any,
         onClose?: (...args: unknown[]) => any
