@@ -52,7 +52,7 @@ export class Lazy2ComponentComponent {
     public async openModalFromDynamicService(): Promise<void> {
         const onOpen = () => console.log('Modal opened!');
         const onClose = () => console.log('Modal closed!');
-        const isConfirm = await this.dynamicComponentSrv.openConfirmModal<boolean>(
+        const isConfirm = await this.dynamicComponentSrv.openConfirmModal<ModalComponent, boolean>(
             ModalComponent,
             {
                 size: 'fullscreen',
