@@ -1,13 +1,13 @@
 <div class="wrapper">
     <app-infinite-accordeon [accordeons]="accordeons"></app-infinite-accordeon>
-    <h1 [ngClass]="{title}">{{ title | titlecase }}</h1>
+    <h1 [ngClass]="{ title }">{{ title | titlecase }}</h1>
     <input type="text" placeholder="Search products..." [(ngModel)]="name" (ngModelChange)="onNgModelChange($event)" />
     <app-input ngDefaultControl [(ngModel)]="name" (ngModelChange)="onNgModelChange($event)"></app-input>
     <button (click)="changeName()">Add 1 in input</button>
     <button *ngIf="!(modalService.isOpenModal$ | async)" (click)="openModal()">Show form</button>
     <p *ngIf="isLoading">Wait please...</p>
     <div *ngIf="products" class="product">
-        <app-product *ngFor="let product of products | filterProducts : name; let i = index" [i]="i" [product]="product"></app-product>
+        <app-product *ngFor="let product of products | filterProducts: name; let i = index" [i]="i" [product]="product"></app-product>
     </div>
     <app-modal *ngIf="modalService.isOpenModal$ | async" title="Modal Title">
         <app-create-product></app-create-product>
@@ -22,4 +22,6 @@
         </div>
         <div class="radio-row"></div>
     </section>
+    <button (click)="updateRandomNum()">Update random num</button>
+    <app-spin-number [num]="randomNum"></app-spin-number>
 </div>

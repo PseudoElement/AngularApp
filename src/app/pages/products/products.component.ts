@@ -94,7 +94,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
         ],
     ];
 
-    constructor(private _porductSrv: ProductsService, public modalService: ModalService, private _formBuilderSrv: FormBuilderService) {
+    public randomNum: number = 1_000;
+
+    constructor(
+        private _porductSrv: ProductsService,
+        public modalService: ModalService,
+        private _formBuilderSrv: FormBuilderService,
+    ) {
         from([1, 2, 3, 4, 5, 6])
             .pipe(
                 mergeMap((id) => ajax.getJSON<IRes>(`https://jsonplaceholder.typicode.com/todos/${id}`)),
@@ -108,7 +114,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
                 }),
                 debounceTime(10000),
                 finalize(() => 1),
-                take(5)
+                take(5),
             )
             .subscribe((data) => {
                 this.id++;
@@ -156,5 +162,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
                 observer.complete();
             }, 2000);
         });
+    }
+
+    public updateRandomNum(): void {
+        this.randomNum = Math.floor(Math.random() * 1_000_000);
     }
 }

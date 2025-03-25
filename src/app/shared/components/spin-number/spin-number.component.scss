@@ -1,0 +1,35 @@
+:host {
+    all: initial;
+    * {
+        all: unset;
+    }
+}
+.spin-num {
+    cursor: default;
+    padding: 2px 15px;
+    border-radius: 10px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: end;
+    overflow: hidden;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+    font-weight: 900;
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        transition: all 1500ms ease-out;
+    }
+
+    .char {
+        &.spinned {
+        }
+    }
+}
