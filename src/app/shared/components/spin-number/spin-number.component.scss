@@ -6,6 +6,7 @@
 }
 .spin-num {
     cursor: default;
+    user-select: none;
     padding: 2px 15px;
     border-radius: 10px;
     height: 32px;
@@ -29,7 +30,18 @@
     }
 
     .char {
-        &.spinned {
+        &-active {
+            animation: linear 1500ms scaler;
         }
+    }
+}
+
+@keyframes scaler {
+    0% {
+        transform: scale(0.2);
+    }
+
+    100% {
+        transform: scale(1.5);
     }
 }

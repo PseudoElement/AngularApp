@@ -1,5 +1,7 @@
 <div class="spin-num" [ngStyle]="{ width: wrapperWidth + 'px', height: size + 'px' }">
     <div *ngFor="let fromZerotoNum of numsArray" class="column">
-        <p *ngFor="let char of fromZerotoNum" class="char" [style.height]="size" [style.fontSize]="size" [style.lineHeight]="size">{{ char }}</p>
+        <p *ngFor="let char of fromZerotoNum" class="char" [style.height]="size" [style.fontSize]="size" [style.lineHeight]="size">
+            {{ char }}
+        </p>
     </div>
 </div>

@@ -50,6 +50,9 @@ export class SpinNumberComponent {
 
             el.style.transform = `translateY(-${offsetY}px)`;
 
+            const chars = el.querySelectorAll('.char');
+            chars.forEach((char) => char.classList.add('char-active'));
+
             await new Promise((res) => setTimeout(res, 200));
         }
     }
@@ -59,6 +62,8 @@ export class SpinNumberComponent {
         for (let i = 0; i < columns.length; i++) {
             const el = columns[i] as HTMLElement;
             el.style.transform = `translateY(0)`;
+            const chars = el.querySelectorAll('.char');
+            chars.forEach((char) => char.classList.remove('char-active'));
         }
     }
 }
