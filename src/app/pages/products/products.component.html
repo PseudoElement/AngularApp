@@ -24,4 +24,13 @@
     </section>
     <button (click)="updateRandomNum()">Update random num</button>
     <app-spin-number [num]="randomNum"></app-spin-number>
+
+    <div class="higlighted-span">
+        <h2>Dynamic higlighting</h2>
+        <div class="body">
+            <input type="number" min="0" value="1" (input)="changeRange($event, 'from')" />
+            <input type="number" min="0" value="2" (input)="changeRange($event, 'to')" />
+            <p higlighter [range]="hlRange" [color]="'orange'" contenteditable="true" (input)="onTyping()"></p>
+        </div>
+    </div>
 </div>

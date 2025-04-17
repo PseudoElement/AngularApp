@@ -40,3 +40,23 @@ nav {
         color: red;
     }
 }
+
+.higlighted-span {
+    background-color: gray;
+
+    .body {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        input {
+            width: 200px;
+        }
+
+        p {
+            width: 300px;
+            border: 1px solid red;
+            padding: 3px;
+        }
+    }
+}

@@ -31,7 +31,7 @@
 
     .char {
         &-active {
-            animation: linear 1500ms scaler;
+            animation: linear 1000ms scaler;
         }
     }
 }
@@ -42,6 +42,6 @@
     }
 
     100% {
-        transform: scale(1.5);
+        transform: scale(1);
     }
 }

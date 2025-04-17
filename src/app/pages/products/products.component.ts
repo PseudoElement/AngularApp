@@ -62,6 +62,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
         age: new FormControl('', [Validators.required]),
     });
 
+    public hlRange: { from: number; to: number } = { from: 1, to: 2 };
+
     public radioGroups = [
         [
             {
@@ -166,5 +168,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     public updateRandomNum(): void {
         this.randomNum = Math.floor(Math.random() * 1_000_000);
+    }
+
+    public changeRange(e: Event, type: 'from' | 'to'): void {
+        const el = e.target as HTMLInputElement;
+        const num = Number(el.value);
+        this.hlRange = { ...this.hlRange, [type]: Number(el.value) };
+    }
+
+    public onTyping(): void {
+        this.hlRange = { ...this.hlRange };
     }
 }
